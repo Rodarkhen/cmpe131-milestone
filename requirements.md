@@ -1,5 +1,3 @@
-## <remove all of the example text and notes in < > such as this one>
-
 ## Functional Requirements
 1. requirement <should be 1 sentence that describes requirement>
 2. requirement
@@ -10,11 +8,6 @@
 7. requirement
 8. requirement
 9. requirement
-10. requirement
-11. requirement
-12. requirement
-13. requirement
-14. requirement
 
 <using the syntax [](images/ui1.png) add images in a folder called images/ and place sketches of your webpages>
 
