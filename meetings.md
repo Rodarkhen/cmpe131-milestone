@@ -1,29 +1,13 @@
-## Instructions
-- Delete this block before adding to your repository.
-- Delete any instructions you see below they will be within < >
-- This schedule should reflect the meetings from the start of the project until the end of the semester.
-- Write at least 1 meeting per week until the end of the semester
-
 ## Meetings
-### 2023-10-01 at 10:30
-- Who attended the meeting
-- Team updates (15min or less)
-<Each team member gives an update of what they did from the last meeting and what
-they plan to do next. If they are stuck, bring it up here to see if others can
-help.>
-- <name> worked on X. Will work on Y next.
-- pair-programming (optional) (25 mins)
-<- Pair program on one part of the project. Driver will be the person responsible
-for that requirement.>
-- Summarize group progress
 
-### 2023-10-08 at 13:30
-<meeting template would go here>
-<only fill in template once you had the meeting>
-<see example on the last date>
-<use date format YYYY-MM-DD at HH:MM>
+### 2023-11-01 at 8:00 PM
+- *Attendees*: Anik, Rodrigo
+- *Updates*:
+  - Achieved proficiency in using GitHub
+  - Discussed the requirements for milestone
+  - Assigned tasks for each member for the next meeting
+    - By next meeting, each member should have 3 requirements with use description written for group discussion.
+  - Appointed Rodrigo as the team leader responsible for documenting the meeting's progress and managing the scheduling.
+- *Summary*: We spent about 2 hours learning how to organize and updates efficiently on GitHub, and going over the tasks required for the next meeting.
 
-### 2023-10-15 at 10:30
-<meeting template would go here>
-<only fill in template once you had the meeting>
-
+### 

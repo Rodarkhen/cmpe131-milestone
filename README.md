@@ -1,5 +1,5 @@
-# Project Name
-- Name (@username)
-- Name (@username)
-- Name (@username)
-- Name (@username)
+# CMPE 131 Email Website
+
+## Collaborators
+- Anik Budhathoki (@AnikBudhathoki)
+- Rodrigo Chen (@Rodarkhen) [Team Lead]
