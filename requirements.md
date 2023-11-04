@@ -1,23 +1,25 @@
 ## Functional Requirements
-1. requirement <should be 1 sentence that describes requirement>
-2. requirement
+1. Create account
+2. Sign Up
 3. Create Notes (The user should be able to create a new note)
 4. Attach Files/Images (The user should be able to add images/files to their notes)
-5. requirement
+5. Search Notes
 6. Delete Notes (The user should be able to delete notes from their account)
-7. requirement
-8. requirement
-9. requirement
-
+7. *Connect to any external API
+8. Log Out
+9. Share Notes
+10. Edit User Profiles
+11. *Advance search items with regular expressions or filters by categories
+12. *Visualize note connections
 <using the syntax [](images/ui1.png) add images in a folder called images/ and place sketches of your webpages>
 
 ## Non-functional Requirements
-1. non-functional
-2. non-functional
+1. *Multilingual Support 
+2. Account Verification
 
 <each of the 14 requirements will have a use case associated with it>
 ## Use Cases <Add name of who will write (this specific requirement) and implement (in subsequent milestones) the use case below>
-3. **Create Notes**
+3. **Create Notes - (@AnikBudhathoki)**
 - **Pre-condition:** 
     - The user must be logged into their personal account.
 - **Trigger:**
@@ -35,11 +37,11 @@
     - The user's notes are saved under their account
 - **Alternate Sequence:** <you can have more than one alternate sequence to
 describe multiple issues that may arise and their outcomes>
-  1. System presents an error message prompting user to fill out missing information (ie. Title name)
-  2. User presented option to type in missing fields
-  3. System validates notes again to make sure all fields are entered properly
+  1. (6a) System presents an error message prompting user to fill out missing information (ie. Title name)
+  2. (6b) User presented option to type in missing fields
+  3. (6c) System validates notes again to make sure all fields are entered properly
   
-4. **Attach Files/Images**
+4. **Attach Files/Images - (@AnikBudhathoki)**
 - **Pre-condition:** 
     - The user must be logged into their personal account and on an existing note they want to edit
 - **Trigger:**
@@ -60,7 +62,7 @@ describe multiple issues that may arise and their outcomes>
   2. (5b) User presented the option to select another file for uploading
   3. (5c) The user selects files again and step v of the primary sequence is repeated
 
-5. **Delete Notes**
+5. **Delete Notes - (@AnikBudhathoki)**
 - **Pre-condition:** 
     - The user must be logged into their personal account and on an existing note they want to edit
 - **Trigger:**
