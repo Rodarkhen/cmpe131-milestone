@@ -60,6 +60,7 @@
   - The user must be logged into their personal account.
 - **Trigger:**
   - The user clicks the create new note option.
+
 - **Primary Sequence:**
   1. User clicks the "New Notes" option in the webpage
   2. User is presented with a blank note-taking template 
