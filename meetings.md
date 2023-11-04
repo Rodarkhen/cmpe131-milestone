@@ -19,7 +19,7 @@
   - Reviewed assignments and future tasks
     - Create 3 Use cases for each assigned requirement
     - Create UI sketches
-  - Summary: We spent about 2 hours listing out the requriements we
-              would implement into our project. We then 
-              spent time assigning each requirement to a team member.
+- *Summary*: We spent about 2 hours listing out the requriements we
+            would implement into our project. We then 
+            spent time assigning each requirement to a team member.
   
