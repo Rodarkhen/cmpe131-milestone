@@ -14,7 +14,7 @@
 - *Attendees*: Anik, Rodrigo, Nick
 - *Updates*:
   - Catch up everyone with progress on GitHub
-  - Discussed/Brainstormed functional and non-functional requirements for milesstone
+  - Discussed/Brainstormed functional and non-functional requirements for milestone
   - Assigned requirements to team members
   - Reviewed assignments and future tasks
     - Create 3 Use cases for each assigned requirement
