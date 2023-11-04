@@ -1,6 +1,6 @@
 ## Functional Requirements
-1. Create Account (User should be able to create an acocunt)
-2. Sign up (Users should have the option to sign up for an account)
+1. Create Account (User should be able to create an account)
+2. Log in (Users should have the option to Log in to an account)
 3. Create Notes (User should be able to create a new note)
 4. Attach Files/images (User should be able to add images/files to their notes)
 5. Search Notes (Users should be able to search for specific notes)
@@ -18,14 +18,14 @@
 2. Account Verification (The system should implement secure and efficient account verification processes)
 
 ## Use Cases
-### 1. Create Account
+### 1. Sign up
 - **Author:** Rodrigo (@Rodarkhen)
 - **Pre-condition:** 
   - User is not registered on the platform.
 - **Trigger:** 
-  - Users clicks on the "Sign Up" button.
+  - Users clicks on the "Sign up" button.
 - **Primary Sequence:** 
-  1. User clicks "Sign Up"
+  1. User clicks "Sign up"
   2. User is prompted to a new page
   3. User enters necessary personal information
   4. System validate information entered
@@ -37,9 +37,10 @@
   1. User enters invalid information (e.g., email format is incorrect).
   2. The system displays an error message.
   3. User fixs the information.
-  4. User clicks the "Create Account" button again.
-   
-### 2. Sign up
+  4. User clicks the "Sign up" button again.
+![Signup Sketch](/images/Signup_Sketch.png)
+
+### 2. Log in
 - **Author:** Nikola
 - **Pre-condition:**
   - ...
@@ -53,7 +54,8 @@
 - **Alternate Sequence:** 
   1. ...
   2. ...
- 
+![Login Sketch](images/Login_Sketch.png)
+
 ### 3. **Create Notes**
 - **Author:** Anik (@AnikBudhathoki)
 - **Pre-condition:** 
@@ -71,8 +73,7 @@
 
 - **Primary Postconditions:**
     - The user's notes are saved under their account
-- **Alternate Sequence:** <you can have more than one alternate sequence to
-describe multiple issues that may arise and their outcomes>
+- **Alternate Sequence:**
   1. System presents an error message prompting user to fill out missing information (ie. Title name)
   2. User presented option to type in missing fields
   3. System validates notes again to make sure all fields are entered properly
@@ -218,6 +219,7 @@ describe multiple issues that may arise and their outcomes>
   1. User makes changes to their profile but decides to cancel.
   2. User clicks the "Cancel" or "Discard Changes" button.
   3. No changes is made.
+![Edit profile Sketch](images/Edit_Profile_Sketch.png)
 
 ### 12. Advanced search items with regular expressions
 - **Author:** Rodrigo (@Rodarkhen)
@@ -235,5 +237,3 @@ describe multiple issues that may arise and their outcomes>
 - **Alternate Sequence:** 
   1. No matching items are found.
   2. A message is displayed indicating no results were found.
-
-![Title](images/testImage.png)
