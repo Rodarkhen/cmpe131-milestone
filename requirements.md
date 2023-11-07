@@ -43,17 +43,20 @@
 ### 2. Log in
 - **Author:** Nikola
 - **Pre-condition:**
-  - ...
+  - The user must have the application running. 
 - **Trigger:**
-  - ...
+  - The user clicks the log in button on the main menu screen. 
 - **Primary Sequence:** 
-  1. ...
-  2. ...
+  1. User Enters the username string associated with their account. 
+  2. User clicks on the password text box
+  3. User enters the password string associated with their account. 
+  4. User either hits the 'enter' button on their device or clicks the button on the screen. 
 - **Primary Postconditions:**
   - ...
 - **Alternate Sequence:** 
-  1. ...
-  2. ...
+  1. The user clicks the "create account" button 
+  2. The user enters the email, username, and password for their account 
+  3. The user clicks the "submit" button 
 ![Login Sketch](images/Login_Sketch.png)
 
 ### 3. **Create Notes**
@@ -141,47 +144,46 @@
 ### 7. Edit Notes
 - **Author:** Nikola
 - **Pre-condition:**
-  - ...
+  - The user must be logged into their personal account and on an existing note they want to edit
 - **Trigger:**
-  - ...
+  - The user clicks the "edit notes" button 
 - **Primary Sequence:** 
-  1. ...
-  2. ...
+  1. The user makes the intended changes to the note
+  2. The user clicks the "save changes" button 
 - **Primary Postconditions:**
-  - ...
+  - The system places the user in a viewer only mode again, unable to make changes 
 - **Alternate Sequence:** 
-  1. ...
-  2. ...
-
-### 8. 
+  1. The user is prompted with an error message, "you are unable to edit at this time" 
+ 
+### 8. *Connect with any external API (grammarly)
 - **Author:** Nikola
 - **Pre-condition:**
-  - ...
+  - The user must have an active notes sheet open, with spell check enabled
 - **Trigger:**
-  - ...
+  - Opening a notes sheet 
 - **Primary Sequence:** 
-  1. ...
-  2. ...
+  1. The user clicks a word or phrase with a red line underneath 
+  2. The user selects a potential fix to the highlighted error
 - **Primary Postconditions:**
-  - ...
+  - The previously highlighted words or phrases are no longer present
 - **Alternate Sequence:** 
-  1. ...
-  2. ...
+  1. The user clicks the "ignore suggestions" button
+  
 
-### 9. 
+### 9. Log Out
 - **Author:** Nikola
 - **Pre-condition:**
-  - ...
+  - The user must be logged into their account
 - **Trigger:**
-  - ...
+  - The user clicks the "log out" button 
 - **Primary Sequence:** 
-  1. ...
-  2. ...
+  1. The user clicks the settings symbol 
+  2. The user clicks the log out button in the dropdown 
+  3. The system returns the user to the main menu login screen 
 - **Primary Postconditions:**
-  - ...
+  - The users account is no longer designated as logged in 
 - **Alternate Sequence:** 
-  1. ...
-  2. ...
+  1. The user is prompted with an error message that the system was unable to log them out
   
 ### 10. Share Notes
 - **Author:** Rodrigo (@Rodarkhen)
