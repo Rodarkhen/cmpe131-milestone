@@ -165,7 +165,7 @@
 - **Alternate Sequence:** 
   1. The user is prompted with an error message, "you are unable to edit at this time" 
 
-
+![Edit Sketch](images/NikolaEditExp.png)
 
 ### 8. *Connect with any external API
 - **Author:** Nikola
@@ -186,6 +186,7 @@
   2. The application displays an error message to the user.
   3. The user may be prompted to connect with the API again
 
+![API Sketch](images/NikolaApiExp.png)
 
 
 ### 9. Log Out
@@ -203,6 +204,7 @@
 - **Alternate Sequence:** 
   1. The user is prompted with an error message that the system was unable to log them out
 
+![Logout Sketch](images/NikolaSettingsExp.png)
 
 
 ### 10. Share Notes
