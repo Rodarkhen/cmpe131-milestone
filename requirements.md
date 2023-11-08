@@ -14,7 +14,7 @@
 13. *Visualize note connections (Users should be able to visualize how their notes are related to each other)
 
 ## Non-functional Requirements
-1. Multilingual Support (Support contents in multiple languages)
+1. *Multilingual Support (Support contents in multiple languages)
 2. Account Verification (The system should implement secure and efficient account verification processes)
 
 ## Use Cases
@@ -26,11 +26,11 @@
   - Users clicks on the "Sign up" button.
 - **Primary Sequence:** 
   1. User clicks "Sign up"
-  2. User is prompted to a new page
-  3. User enters necessary personal information
-  4. System validate information entered
-  5. The system creates the account if it passes validation
-  6. User can now access the platform
+  2. User is prompted to the sign up page
+  3. User enters necessary information
+  5. System validate information entered
+  6. The system creates the account if it passes validation
+  7. User can now log in and access the application
 - **Primary Postconditions:**
   - User has now a registered account and can access the app.
 - **Alternate Sequence:** 
@@ -38,6 +38,7 @@
   2. The system displays an error message.
   3. User fixs the information.
   4. User clicks the "Sign up" button again.
+
 ![Signup Sketch](/images/Signup_Sketch.png)
 
 ### 2. Log in
@@ -52,11 +53,13 @@
   3. User enters the password string associated with their account. 
   4. User either hits the 'enter' button on their device or clicks the button on the screen. 
 - **Primary Postconditions:**
-  - ...
+  - The user is successfully logged into their account 
 - **Alternate Sequence:** 
   1. The user clicks the "create account" button 
   2. The user enters the email, username, and password for their account 
-  3. The user clicks the "submit" button 
+
+  3. The user clicks the "submit" button
+
 ![Login Sketch](images/Login_Sketch.png)
 
 ### 3. **Create Notes**
@@ -65,7 +68,6 @@
   - The user must be logged into their personal account.
 - **Trigger:**
   - The user clicks the create new note option.
-
 - **Primary Sequence:**
   1. User clicks the "New Notes" option in the webpage
   2. User is presented with a blank note-taking template 
@@ -74,14 +76,15 @@
   5. User enters name of the save
   6. System validates the notes to make sure all fields are entered (ie. Make sure title field is not missing)
   7. System prompts message stating the save was successful
-
 - **Primary Postconditions:**
     - The user's notes are saved under their account
 - **Alternate Sequence:**
   1. System presents an error message prompting user to fill out missing information (ie. Title name)
   2. User presented option to type in missing fields
   3. System validates notes again to make sure all fields are entered properly
-  
+
+![Create Note](images/Create_notes_sketch.jpeg)
+
 ### 4. Attach Files/Images
 - **Author:** Anik (@AnikBudhathoki)
 - **Pre-condition:** 
@@ -101,6 +104,8 @@
   2. User presented the option to select another file for uploading
   3. The user selects files again and step v of the primary sequence is repeated
 
+![Login Sketch](images/Create_notes_sketch.jpeg)
+
 ### 5. Search Notes
 - **Author:** Rodrigo (@Rodarkhen)
 - **Pre-condition:**
@@ -117,7 +122,9 @@
 - **Alternate Sequence:** 
   1. User enters search keywords, but no matching words are found.
   2. The system displays a not-found message.
-   
+
+![Search Sketch](images/Search_Sketch.png)
+
 ### 6. Delete Notes
 - **Author:** Anik (@AnikBudhathoki)
 - **Pre-condition:** 
@@ -141,34 +148,46 @@
   1. System prompts an error during deletion(ex. server, database error) to the user
   2. A message is displayed to the user to try again later
 
+![Login Sketch](images/delete_notes_sketch.jpeg)
+
 ### 7. Edit Notes
 - **Author:** Nikola
 - **Pre-condition:**
   - The user must be logged into their personal account and on an existing note they want to edit
 - **Trigger:**
   - The user clicks the "edit notes" button 
-- **Primary Sequence:** 
-  1. The user makes the intended changes to the note
-  2. The user clicks the "save changes" button 
+- **Primary Sequence:**
+  1. User selects an existing note in the application.
+  2. The user makes the intended changes to the note.
+  3. User may add or remove text, images, or other content within the note.
+  4. The user clicks the "save changes" button 
 - **Primary Postconditions:**
   - The system places the user in a viewer only mode again, unable to make changes 
 - **Alternate Sequence:** 
   1. The user is prompted with an error message, "you are unable to edit at this time" 
- 
-### 8. *Connect with any external API (grammarly)
+
+![Edit Sketch](images/NikolaEditExp.png)
+
+### 8. *Connect with any external API
 - **Author:** Nikola
 - **Pre-condition:**
-  - The user must have an active notes sheet open, with spell check enabled
+  - The user is logged into the web application.
 - **Trigger:**
-  - Opening a notes sheet 
+  - Requires interaction with an external API,
 - **Primary Sequence:** 
-  1. The user clicks a word or phrase with a red line underneath 
-  2. The user selects a potential fix to the highlighted error
+  1. User initiates the action to interact with an external API.
+  2. The external API processes the request and provides a response.
+  3. The application receives and processes the data from the external API.
+  4. The relevant data or information from the API response is displayed or used within the web application as needed.
+  5. The user can continue to use the application with the retrieved data or perform further actions.
 - **Primary Postconditions:**
-  - The previously highlighted words or phrases are no longer present
+  - The application successfully connects with the external API and retrieves the required data for the user to interact with.
 - **Alternate Sequence:** 
-  1. The user clicks the "ignore suggestions" button
-  
+  1. Interacting with the API fails
+  2. The application displays an error message to the user.
+  3. The user may be prompted to connect with the API again
+
+![API Sketch](images/NikolaApiExp.png)
 
 ### 9. Log Out
 - **Author:** Nikola
@@ -184,7 +203,9 @@
   - The users account is no longer designated as logged in 
 - **Alternate Sequence:** 
   1. The user is prompted with an error message that the system was unable to log them out
-  
+
+![Logout Sketch](images/NikolaSettingsExp.png)
+
 ### 10. Share Notes
 - **Author:** Rodrigo (@Rodarkhen)
 - **Pre-condition:**
@@ -200,9 +221,11 @@
 - **Primary Postconditions:**
   - The selected note is successfully shared with the recipient.
 - **Alternate Sequence:** 
-  - User enters an invalid or non-existent recipient email or username
-  - An error message about the recipient's information is displayed
-  - User must changes the correct recipient information to proceed with sharing
+  1. User enters an invalid or non-existent recipient email or username
+  2. An error message about the recipient's information is displayed
+  3. User must changes the correct recipient information to proceed with sharing
+
+![Share Note Sketch](images/ShareNote_Sketch.png)
 
 ### 11. Edit User Profiles
 - **Author:** Rodrigo (@Rodarkhen)
@@ -222,7 +245,8 @@
   1. User makes changes to their profile but decides to cancel.
   2. User clicks the "Cancel" or "Discard Changes" button.
   3. No changes is made.
-![Edit profile Sketch](images/Edit_Profile_Sketch.png)
+
+![Edit profile Sketch](images/ChangeProfile_Sketch.png)
 
 ### 12. Advanced search items with regular expressions
 - **Author:** Rodrigo (@Rodarkhen)
