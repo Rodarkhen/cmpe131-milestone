@@ -57,6 +57,7 @@
 - **Alternate Sequence:** 
   1. The user clicks the "create account" button 
   2. The user enters the email, username, and password for their account 
+
   3. The user clicks the "submit" button
 
 ![Login Sketch](images/Login_Sketch.png)
@@ -188,7 +189,6 @@
 
 ![API Sketch](images/NikolaApiExp.png)
 
-
 ### 9. Log Out
 - **Author:** Nikola
 - **Pre-condition:**
@@ -205,7 +205,6 @@
   1. The user is prompted with an error message that the system was unable to log them out
 
 ![Logout Sketch](images/NikolaSettingsExp.png)
-
 
 ### 10. Share Notes
 - **Author:** Rodrigo (@Rodarkhen)
