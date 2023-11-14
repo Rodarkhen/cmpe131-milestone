@@ -57,7 +57,6 @@
 - **Alternate Sequence:** 
   1. The user clicks the "create account" button 
   2. The user enters the email, username, and password for their account 
-
   3. The user clicks the "submit" button
 
 ![Login Sketch](images/Login_Sketch.png)
