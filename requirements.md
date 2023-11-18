@@ -1,5 +1,5 @@
 ## Functional Requirements
-1. Create Account (User should be able to create an account)
+1. Sign up (User should be able to create an account)
 2. Log in (Users should have the option to Log in to an account)
 3. Create Notes (User should be able to create a new note)
 4. Attach Files/images (User should be able to add images/files to their notes)
@@ -15,7 +15,7 @@
 
 ## Non-functional Requirements
 1. *Multilingual Support (Support contents in multiple languages)
-2. Account Verification (The system should implement secure and efficient account verification processes)
+2. Hashed Password (The system will store hashed passowords in the database for user security)
 
 ## Use Cases
 ### 1. Sign up
@@ -42,7 +42,7 @@
 ![Signup Sketch](/images/Signup_Sketch.png)
 
 ### 2. Log in
-- **Author:** Nikola
+- **Author:** Nikola (@NickZivkovic)
 - **Pre-condition:**
   - The user must have the application running. 
 - **Trigger:**
@@ -150,7 +150,7 @@
 ![Login Sketch](images/delete_notes_sketch.jpeg)
 
 ### 7. Edit Notes
-- **Author:** Nikola
+- **Author:** Nikola (@NickZivkovic)
 - **Pre-condition:**
   - The user must be logged into their personal account and on an existing note they want to edit
 - **Trigger:**
@@ -168,7 +168,7 @@
 ![Edit Sketch](images/NikolaEditExp.png)
 
 ### 8. *Connect with any external API
-- **Author:** Nikola
+- **Author:** Nikola (@NickZivkovic)
 - **Pre-condition:**
   - The user is logged into the web application.
 - **Trigger:**
@@ -189,7 +189,7 @@
 ![API Sketch](images/NikolaApiExp.png)
 
 ### 9. Log Out
-- **Author:** Nikola
+- **Author:** Nikola (@NickZivkovic)
 - **Pre-condition:**
   - The user must be logged into their account
 - **Trigger:**
