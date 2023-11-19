@@ -1,9 +1,54 @@
-{% extends 'base.html' %}
-
-{% block title %}Sign Up on NOTEY - {{ super() }}{% endblock %}
+<!-- sign_up.html -->
+{% extends "base.html" %}
 
 {% block content %}
-    <section>
-        <h2>Sign Up</h2>
-    </section>
+  <div class="container">
+    <h1>Sign Up</h1>
+
+    <form action="{{ url_for('sign_up') }}" method="POST" novalidate>
+      {{ form.hidden_tag() }}
+      <p>
+         <label for="name">Name</label>
+         {{ form.name(size=32) }}
+      </p>
+
+      <p>
+         <label for="email">Email</label>
+         {{ form.email(size=32) }}
+         {% if email_error %}
+         <span class="error">{{ email_error }}</span>
+         {% endif %}
+      </p>
+
+      <p>
+      <label for="username">Username</label>
+      {{ form.username(size=32) }}
+      {% if username_error %}
+        <span class="error">{{ username_error }}</span>
+      {% endif %}
+      </p>
+      
+      <p>
+         <label for="password">Password</label>
+         {{ form.password(size=32) }}
+         {% if password_error %}
+         <span class="error">{{ password_error }}</span>
+         {% endif %}
+      </p>
+      
+      <p>
+         <label for="confirm">Confirm Password</label>
+         {{ form.confirm(size=32) }}
+      </p>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <p>Already have an account? <a href="{{ url_for('home') }}">Login</a></p>
+
+    {% for message in get_flashed_messages(with_categories=true, category_filter=['success']) %}
+      <p class="success">{{ message[0] }}</p>
+    {% endfor %}
+  </div>
+  <link rel="stylesheet" href="{{ url_for('static', filename='sign_up.css') }}">
 {% endblock %}
