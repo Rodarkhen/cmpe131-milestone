@@ -1,10 +1,11 @@
 # routes.py
 from markupsafe import escape
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, request
 from app import myapp_obj, db
-from app.models import User
+from app.models import User,Note
 from .forms import SignUpForm
 from datetime import datetime
+
 
 # Route for the home page
 @myapp_obj.route('/')
@@ -57,6 +58,17 @@ def sign_up():
 
 @myapp_obj.route('/create_note')
 def create_note():
+    if request.method == 'POST':
+        note = request.form.get('note')  # Gets the note from the HTML
+        title = request.form.get('title')
+
+        if len(note) < 1:
+            flash('Note is too short!', category='error')
+        else:
+            new_note = Note(data=note, note_title=title)
+            db.session.add(new_note)
+            db.session.commit()
+            flash('Note added!', category='success')
     return render_template('create_note.html')
 # Add more routes as needed
 

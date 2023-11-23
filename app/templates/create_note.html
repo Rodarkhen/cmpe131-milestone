@@ -1,9 +1,23 @@
-{% extends 'base.html' %}
+<h1>Create Notes</h1>
+<h2>Title</h2>
 
-{% block title %}Create Note - {{ super() }}{% endblock %}
+<form method="POST">
+  <textarea name="title" id="title" class="form-control"></textarea>
+  <br><br>
+  <h3>Body</h3>
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+    <button type="Submit">Add Note</button>
+</form>
 
-{% block content %}
-    <section>
-        <h2>Create a New Note</h2>
-    </section>
-{% endblock %}
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
