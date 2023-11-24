@@ -1,16 +1,16 @@
 # routes.py
 from markupsafe import escape
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, request
+from flask_login import login_user, current_user, logout_user, login_required
 from app import myapp_obj, db
 from app.models import User
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginForm, EditProfileForm
 from datetime import datetime
 
-# Route for the home page
 @myapp_obj.route('/')
 @myapp_obj.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template(url_for('base'))
 
 # Route for handling user sign-up
 @myapp_obj.route("/sign_up", methods=['GET', 'POST'])
@@ -33,27 +33,56 @@ def sign_up():
         )
         # Hash the password
         u.set_password(form.password.data)
-        # Check if the passwords match
-        if form.password.data != form.confirm.data:
-            password_error = "Passwords do not match."
 
-        # add to the database
+        # Add to the database
         db.session.add(u)
         db.session.commit()
 
         # Flash a success message and redirect to the home page
-        flash('Account created successfully. Now you can log in!', 'success')
-        return redirect('/')
+        flash('Account created successfully.', 'success')
+        return redirect(url_for('home'))
     
-    # Check if the username is already in use
-    if User.query.filter_by(username=form.username.data).first():
-        username_error = "Username is already in use."
-    # Check if the email is already in use
-    if User.query.filter_by(email=form.email.data).first():
-        email_error = "Email is already in use."
+    # Check if the username and email is already taken
+    username_error = form.validate_username(form.username)
+    email_error = form.validate_email(form.email)
+
+    # Check if the passwords match
+    if form.password.data != form.confirm.data:
+        password_error = "Password mismatch"
     
     # Render the sign-up form template with any validation messages
     return render_template('sign_up.html', form=form, username_error=username_error, email_error=email_error, password_error=password_error)
+
+@myapp_obj.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+
+    # Initialize error messages
+    username_error = None
+    email_error = None
+
+    if form.validate_on_submit():
+        # Check if the username and email is already taken
+        if  form.exist_username(form.username) and form.username.data != current_user.username:
+            username_error = 'Username already taken'
+        if  form.exist_email(form.email) and form.email.data != current_user.email:
+            email_error = 'Email already taken.'
+        # If either the username or email is taken, display an error message
+        if username_error or email_error:
+            return render_template('edit_profile.html', form=form, username_error=username_error, email_error=email_error)
+        # Updates the current user information
+        current_user.update_info(form.name.data, form.username.data, form.email.data)
+        flash('Changes Saved!.', 'success')
+        return redirect(url_for('home'))
+    
+    # Pre-fill the form with the current user information
+    form.name.data = current_user.name
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+    form.created_at.data = current_user.created_at.strftime("%m-%d-%Y")  # Convert datetime to string for display
+
+    return render_template('edit_profile.html', form=form)
 
 @myapp_obj.route('/create_note')
 def create_note():

@@ -6,18 +6,41 @@ from datetime import datetime
 from app.models import User
 
 class SignUpForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password',validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')])
-    confirm  = PasswordField('Confirm Password')
+    name = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Enter your name"})
+    email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Enter your email"})
+    username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Choose a username"})
+    password = PasswordField('Password',validators=[DataRequired(), EqualTo('confirm', message='Passwords must match')], render_kw={"placeholder": "Enter a password"})
+    confirm  = PasswordField('Confirm Password', render_kw={"placeholder": "Confirm your password"})
     created_at = DateTimeField('Creation Date', default=datetime.now())
     submit = SubmitField('Create Account')
 
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username is already in use.')
+            return 'Username already taken'
 
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email is already in use.')
+            return 'Email already taken'
+
+class EditProfileForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    created_at = StringField('Account Created on', render_kw={'readonly': True})
+    submit = SubmitField('Save Changes')
+    def validate_username(self, field):
+        if User.query.filter_by(username=field.data).first():
+            return 'Username already taken'
+
+    def validate_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            return 'Email already taken'
+        
+    def exist_username(self, field):
+        if User.query.filter_by(username=field.data).first():
+            return True
+
+    def exist_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            return True
+

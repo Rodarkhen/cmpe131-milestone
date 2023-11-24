@@ -1,4 +1,4 @@
-/* static/style.css */
+/* style.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -7,7 +7,7 @@ body {
 .container {
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

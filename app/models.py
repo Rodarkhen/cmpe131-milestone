@@ -18,3 +18,21 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<user {self.id}: {self.username}>'
+    
+    def is_active(self):
+        return True  # You can customize this based on your application's logic
+
+    def get_id(self):
+        return str(self.id)
+    
+    def is_authenticated(self):
+        return True 
+    def is_anonymous(self):
+        return False  # Assuming your user objects are not anonymous
+    
+        # For editing profile
+    def update_info(self, name, username, email):
+        self.name = name
+        self.username = username
+        self.email = email
+        db.session.commit()

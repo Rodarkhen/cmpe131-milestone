@@ -1,23 +1,19 @@
+<!-- home.html -->
 {% extends 'base.html' %}
 
-{% block title %}Home - {{ super() }}{% endblock %}
-
 {% block content %}
-    <section>
-        <h2>NOTEY</h2>
-        <p>This is the home page.</p>
-        <a href="{{ url_for('sign_up') }}">Sign up</a>
-    </section>
-
-    <section>
-        <h2>Recent Notes</h2>
-        <ul>
-            {% for note in recent_notes %}
-                <li>
-                    <h3>{{ note.title }}</h3>
-                    <p>{{ note.content }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <h2>Welcome, {{ name }}!</h2>
+  <h3>Your Notes:</h3>
+  {% if user_notes %}
+    {% for note in user_notes %}
+      <a href="{{ url_for('edit_note', note_id=note.id) }}" class="note-block">
+        <strong>{{ note.title }}</strong> - {{ note.content }}
+        <img src="{{ url_for('static', filename='/pictures/edit.png') }}" alt="Edit" height=15px>
+        <img src="{{ url_for('static', filename='/pictures/delete.png') }}" alt="Delete" height=15px>
+      </a>
+    {% endfor %}
+  {% else %}
+    <p>Nothing here yet.</p>
+  {% endif %}
 {% endblock %}
