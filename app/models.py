@@ -20,9 +20,13 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<user {self.id}: {self.username}>'
+    
 class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    note_title = db.Column(db.String(150))
-    data = db.Column(db.String(10000))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    #Various "columns" for Note database
+    
+    id = db.Column(db.Integer, primary_key=True)    #ID for note
+    note_title = db.Column(db.String(150))          #Title of note
+    data = db.Column(db.String(10000))              #Data or contents of the note
+    date = db.Column(db.DateTime(timezone=True), default=func.now())    #Date at which note created
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))           #User_ID, which relates to another database
+    

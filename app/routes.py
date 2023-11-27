@@ -58,13 +58,16 @@ def sign_up():
 
 @myapp_obj.route('/create_note')
 def create_note():
+    #Get method (action) from HTML
     if request.method == 'POST':
         note = request.form.get('note')  # Gets the note from the HTML
-        title = request.form.get('title')
+        title = request.form.get('title')  #Gets title from HTML
 
+        #IF note data is less than 1, then display error
         if len(note) < 1:
             flash('Note is too short!', category='error')
         else:
+        #IF note sufficent length, then add the note to database
             new_note = Note(data=note, note_title=title)
             db.session.add(new_note)
             db.session.commit()
