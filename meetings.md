@@ -21,3 +21,13 @@
     - Create UI sketches
 - *Summary*: We spent about 2 hours listing out the requirements we would implement into our project. We then spent time assigning each requirement to a team member.
   
+### 2023-11-15 at 7:15 PM 
+- *Attendees*: Anik, Rodrigo, Nick
+- *Updates*:
+  - Further discuss the requirements and startegy to implement them 
+  - Helped Nick setup python libraries & Vscode
+  - Divided tasks for the weekend and following week 
+  - Goal is to implement 9 requirements for the milestone \
+- - *Summary*: We spent about 1 hour reviewing requirements and how to build them. Also setting up VScode for 
+development. 
+

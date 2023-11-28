@@ -15,3 +15,14 @@ def create_note():
     return render_template('create_note.html')
 # Add more routes as needed
 
+@myapp_obj.route('/login_page')
+def login_page():
+    return render_template('login_page.html')
+
+
+@myapp_obj.route('/logout_feature')
+def logout_feature():
+    return render_template('/logout_feature.html')
+
+
+
