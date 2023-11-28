@@ -31,3 +31,13 @@
 - - *Summary*: We spent about 1 hour reviewing requirements and how to build them. Also setting up VScode for 
 development. 
 
+### 2023-11-22 at 6:30 PM
+- *Attendees*: Anik, Rodrigo
+- *Updates*:
+  -Catch up on our progress with milestone implementations
+  - Debug some GitHub issues Anik had with his code
+  - Demo each other implementation (Create/list notes, sign up/edit profiles) to showcase functionality
+  - Discuss integration tactics that will be need to use to bring project together
+  - Discuss future plans to implement "*" level requirements
+  - Debrief on future assignments/meetings
+- *Summary*: We fixed some issues with GitHub which allowed us to demo to each other our functional requirements for milestone 2. We then discussed future steps that we need to take to finish up our project.
