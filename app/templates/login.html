@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <form action="" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.username.label }} <br>
+                {{ form.username(size=32) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label }} <br>
+                {{ form.password(size=32) }}
+            </div>
+
+            <div class="reme-check">
+                <p> Remember Me?{{ form.remember_me() }} </p>
+            </div>
+
+            <button type="form.submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="{{ url_for('sign_up') }}">Sign Up</a></p>
+        <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    </div>
+{% endblock %}
