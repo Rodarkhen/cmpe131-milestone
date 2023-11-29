@@ -40,3 +40,14 @@
   - Discuss future plans to implement "*" level requirements
   - Debrief on future assignments/meetings
 - *Summary*: We fixed some issues with GitHub which allowed us to demo to each other our functional requirements for milestone 2. We then discussed future steps that we need to take to finish up our project.
+
+### 2023-11-28 at 8:00 PM
+- *Attendees*: Anik, Rodrigo
+- *Updates*:
+  - Review 8 implemented requirements before milestone 2 due date
+  - Resolve issue with bugs in implementation (edit profile, delete notes)
+  - Updated the GitHub repository to eliminate errors presented before
+  - Discussed the " * " level requirements needed for implementation by end of project
+  - Debrief on next meetings goals 
+- *Summary*: We resolve issues with our current project, making it presentable for milestone 2 submission. We also discussed that requirements / features 
+  need to be implemented before final submission of project.
