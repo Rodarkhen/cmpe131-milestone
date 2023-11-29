@@ -1,53 +1,73 @@
 /* home.css */
-
-h2 {
-    color: #28a745;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
 }
 
-h3 {
-    color: #28a745;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-a {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #007bff;
-}
-
-.note-block {
-    position: relative;
+.header {
+    background-color: #343a40;
+    color: #ffffff;
     padding: 15px;
-    background-color: #eee;
-    margin: 20px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-.note-block a:hover {
-    text-decoration: none;
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.text-success {
+    color: #000000;
 }
 
 .note-heading {
     margin-bottom: 20px;
 }
 
+.note-block {
+    position: relative;
+    padding: 15px;
+    background-color: #eee;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.note-block:hover {
+    background-color: #d6d6d6;
+}
+
+.note-block img {
+    margin-left: 10px;
+}
+
 .delete-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    display: none;
 }
 
 .note-block:hover .delete-icons {
-    display: block;
+    display: flex;
+}
+
+.note-block a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.text-muted {
+    color: #6c757d;
 }

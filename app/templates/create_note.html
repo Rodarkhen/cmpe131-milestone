@@ -2,23 +2,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Create Note</h2>
-  <form method="POST" action="{{ url_for('create_note') }}">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-      {{ form.title.label }}
-      {{ form.title(class="form-control") }}
-      {% if form.title.errors %}
-        <small class="text-danger">{{ form.title.errors[0] }}</small>
-      {% endif %}
-    </div>
-    <div class="form-group">
-      {{ form.content.label }}
-      {{ form.content(class="form-control") }}
-      {% if form.content.errors %}
-        <small class="text-danger">{{ form.content.errors[0] }}</small>
-      {% endif %}
-    </div>
-    <button type="submit" class="btn btn-primary">Save Note</button>
-  </form>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <div class="container mt-5">
+    <h2>Create Note</h2>
+    <form method="POST" action="{{ url_for('create_note') }}" class="mt-4">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        <label for="{{ form.title.id }}">{{ form.title.label }}</label>
+        {{ form.title(class="form-control", id=form.title.id) }}
+        {% if form.title.errors %}
+          <small class="text-danger">{{ form.title.errors[0] }}</small>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.content.id }}">{{ form.content.label }}</label>
+        {{ form.content(class="form-control", id=form.content.id) }}
+        {% if form.content.errors %}
+          <small class="text-danger">{{ form.content.errors[0] }}</small>
+        {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">Save Note</button>
+    </form>
+  </div>
 {% endblock %}
