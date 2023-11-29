@@ -22,6 +22,8 @@ class SignUpForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             return 'Email already taken'
         
+
+        
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Enter your username"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Enter your password"})
@@ -29,11 +31,19 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class EditProfileForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    bio = TextAreaField('Bio')
-    notification_preference = BooleanField('Receive Notifications')
-    theme_preference = SelectField('Theme Preference', choices=[('light', 'Light'), ('dark', 'Dark')])
+    name = StringField('Name', validators=[DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    created_at = StringField('Creation Date', render_kw={'readonly': True})
     submit = SubmitField('Save Changes')
+
+    def exist_username(self, field):
+        if User.query.filter_by(username=field.data).first():
+            return True
+        
+    def exist_email(self, field):
+        if User.query.filter_by(username=field.data).first():
+            return True   
 
 class SearchForm(FlaskForm):
     search_query = StringField('Search Notes', validators=[DataRequired()])
