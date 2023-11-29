@@ -7,7 +7,7 @@ from .models import User, Note
 from .forms import SignUpForm, LoginForm, EditProfileForm, NoteForm, SearchForm
 from datetime import datetime
 
-@myapp_obj.route('/')
+@myapp_obj.route('/', methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
     # Redirect to home page if user is already logged in

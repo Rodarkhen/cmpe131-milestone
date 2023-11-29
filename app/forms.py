@@ -22,8 +22,6 @@ class SignUpForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             return 'Email already taken'
         
-
-        
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()], render_kw={"placeholder": "Enter your username"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Enter your password"})
