@@ -4,13 +4,23 @@ body {
     background-color: #f8f9fa;
 }
 
+.header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
 .container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 50px auto;
 }
 
 .text-success {
-    color: #28a745;
+    color: #000000;
 }
 
 .note-heading {
@@ -55,7 +65,7 @@ body {
 
 .note-block a {
     text-decoration: none;
-    color: #007bff;
+    color: #000000;
 }
 
 .text-muted {
