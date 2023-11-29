@@ -59,10 +59,10 @@ This section provides a list of project requirements and responsibilities assign
 7. Edit Notes by [Anik](https://github.com/NickZivkovic) [x]
 8. Connect with any external API by [Nikola](https://github.com/NickZivkovic)
 9. Log Out by [Rodrigo](https://github.com/NickZivkovic) [x]
-10. Share Notes [Rodrigo](https://github.com/Rodarkhen)
-11. Edit User Profiles [Rodrigo](https://github.com/Rodarkhen) [x]
-12. Advance search items with regular expressions [Rodrigo](https://github.com/Rodarkhen)
+10. Share Notes by [Rodrigo](https://github.com/Rodarkhen)
+11. Edit User Profiles by [Rodrigo](https://github.com/Rodarkhen) [x]
+12. Advance search items with regular expressions by [Rodrigo](https://github.com/Rodarkhen)
 
-Those requiments with an x mark after the collaborator's name is the one that has been implemented.
+Those requiments with an [x] mark after the collaborator's name is the one that has been implemented.
 
 For more details on these requirements, click [requirements.md](requirements.md)
