@@ -1,7 +1,7 @@
 # models.py
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.sql import func
+from datetime import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,8 +10,10 @@ class User(db.Model):
     password = db.Column(db.String(32), nullable=False)
     email = db.Column(db.String(100), unique = True, nullable=False)
     created_at = db.Column(db.DateTime, nullable = False)
-    notes = db.relationship('Note')
 
+    # Establish the one-to-many relationship with notes
+    notes = db.relationship('Note', backref='user', lazy='dynamic')
+                            
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
@@ -21,12 +23,30 @@ class User(db.Model):
     def __repr__(self):
         return f'<user {self.id}: {self.username}>'
     
+    def is_active(self):
+        return True
+
+    def get_id(self):
+        return str(self.id)
+    
+    def is_authenticated(self):
+        return True 
+    def is_anonymous(self):
+        return False
+    
+    # For editing profile
+    def update_info(self, name, username, email):
+        self.name = name
+        self.username = username
+        self.email = email
+        db.session.commit()
+
 class Note(db.Model):
-    #Various "columns" for Note database
-    
-    id = db.Column(db.Integer, primary_key=True)    #ID for note
-    note_title = db.Column(db.String(150))          #Title of note
-    data = db.Column(db.String(10000))              #Data or contents of the note
-    date = db.Column(db.DateTime(timezone=True), default=func.now())    #Date at which note created
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))           #User_ID, which relates to another database
-    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    def __repr__(self):
+        return f'<Note {self.id}: {self.title}>'

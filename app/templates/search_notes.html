@@ -1,0 +1,30 @@
+<!-- search_notes.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Search Notes</h2>
+  <form method="POST" action="{{ url_for('search_notes') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.search_query.label }}
+      {{ form.search_query(class="form-control") }}
+      {% if form.search_query.errors %}
+        <small class="text-danger">{{ form.search_query.errors[0] }}</small>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  {% if user_notes %}
+    <h3>Search Results:</h3>
+    <ul>
+      {% for note in user_notes %}
+        <li>
+          {{ note.title }} - {{ note.content }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No notes found.</p>
+  {% endif %}
+{% endblock %}

@@ -1,19 +1,24 @@
+<!-- create_note.html -->
 {% extends 'base.html' %}
 
-{% block title %}Create Note - {{ super() }}{% endblock %}
-
 {% block content %}
-    <section>
-        <h1>Create Notes</h1>
-        <h2>Title</h2>
-
-        <form method="POST">
-          <textarea name="title" id="title" class="form-control"></textarea>
-          <br><br>
-          <h3>Body</h3>
-          <textarea name="note" id="note" class="form-control"></textarea>
-          <br />
-            <button type="Submit">Add Note</button>
-        </form>
-    </section>
+  <h2>Create Note</h2>
+  <form method="POST" action="{{ url_for('create_note') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.title.label }}
+      {{ form.title(class="form-control") }}
+      {% if form.title.errors %}
+        <small class="text-danger">{{ form.title.errors[0] }}</small>
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.content.label }}
+      {{ form.content(class="form-control") }}
+      {% if form.content.errors %}
+        <small class="text-danger">{{ form.content.errors[0] }}</small>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Save Note</button>
+  </form>
 {% endblock %}

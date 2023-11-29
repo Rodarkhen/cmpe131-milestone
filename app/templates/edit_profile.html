@@ -1,0 +1,45 @@
+<!-- templates/edit_profile.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='edit_profile.css') }}">
+  
+  <div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+    <form method="post" action="{{ url_for('edit_profile') }}">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+        {{ form.name(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.username.label(class="form-control-label") }}
+        {{ form.username(class="form-control") }}
+        {% if username_error %}
+          <span class="error">{{ username_error }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.email.label(class="form-control-label") }}
+        {{ form.email(class="form-control") }}
+        {% if email_error %}
+          <span class="error">{{ email_error }}</span>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        {{ form.created_at.label(class="form-control-label") }}
+        {{ form.created_at(class="form-control", readonly=true) }}
+      </div>
+
+      <div class="form-group" style="display: flex; justify-content: space-between;">
+        {{ form.submit(class="btn btn-primary btn-equal-width") }}
+        <a href="{{ url_for('home') }}" class="btn btn-secondary btn-equal-width">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
