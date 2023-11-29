@@ -1,11 +1,11 @@
-/* search_notes.css */
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 400px;
     margin: 50px auto;
     background-color: #ffffff;
     padding: 20px;
@@ -13,8 +13,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2,
-h3 {
+h2 {
     text-align: center;
     color: #007bff;
 }
@@ -53,14 +52,4 @@ label {
 
 .btn-primary:hover {
     background-color: #0056b3;
-}
-
-.list-group {
-    margin-top: 20px;
-}
-
-.list-group-item {
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    margin-bottom: 10px;
 }
