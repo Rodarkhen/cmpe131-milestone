@@ -14,6 +14,7 @@
         {% endif %}
       </div>
       <button type="submit" class="btn btn-primary">Search</button>
+      <a href="{{ url_for('search_notes') }}" class="btn btn-secondary btn-equal-width">Clear</a>
     </form>
 
     {% if user_notes %}
