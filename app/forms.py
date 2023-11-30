@@ -40,8 +40,8 @@ class EditProfileForm(FlaskForm):
             return True
         
     def exist_email(self, field):
-        if User.query.filter_by(username=field.data).first():
-            return True   
+        if User.query.filter_by(email=field.data).first():
+            return True
 
 class SearchForm(FlaskForm):
     search_query = StringField('Search Notes', validators=[DataRequired()], render_kw={"placeholder": "Enter Search"})
