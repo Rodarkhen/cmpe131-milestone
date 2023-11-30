@@ -7,7 +7,7 @@ from .models import User, Note
 from .forms import SignUpForm, LoginForm, EditProfileForm, NoteForm, SearchForm
 from datetime import datetime
 
-
+# Route for handling user login
 @myapp_obj.route('/', methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
 def login():
@@ -15,19 +15,26 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
 
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+    form = LoginForm() # Create a login form instance
 
+    # Check if the form is submitted and valid
+    if form.validate_on_submit():
+        # Query the database for the user based on the entered username
+        user = User.query.filter_by(username=form.username.data).first()
+        
+        # Check if the user exists and the provided password is correct
         if user and user.check_password(form.password.data):
             login_user(user)
             flash('Login successful!', 'success')
             login_user(user, remember=form.remember_me.data)
+            # Redirect to the home page after successful login
             return redirect(url_for('home'))
         flash('Invalid username or password', 'error')
         # Redirect to the page the user intended to visit before login (if available),
         # or redirect to the home page
         next_page = request.args.get('next') or url_for('home')
+    
+    # Render the login template with the login form
     return render_template('login.html', form=form)
 
 
@@ -35,13 +42,16 @@ def login():
 @myapp_obj.route('/home')
 @login_required
 def home():
-    user_notes = current_user.notes.all()  # Fetch all notes for the current user
+    # Retrieve all notes for the current user
+    user_notes = current_user.notes.all()
+    # Render the home template with the user's name and notes
     return render_template('home.html', name=current_user.name, user_notes=user_notes)
 
 
 # Route for handling user sign-up
 @myapp_obj.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
+    # Create a sign-up form instance
     form = SignUpForm()
 
     # Initialize error messages
@@ -49,7 +59,9 @@ def sign_up():
     email_error = None
     password_error = None
 
-    print(form.validate_on_submit())  # debug
+    print(form.validate_on_submit()) # for debug 
+
+    # Check if the form is submitted and valid
     if form.validate_on_submit():
         # Create a new User instance
         u = User(
@@ -82,34 +94,38 @@ def sign_up():
                            password_error=password_error)
 
 
+# Route for user logout
 @myapp_obj.route('/logout')
 def logout():
+    # Log out the user if they are authenticated
     if current_user.is_authenticated:
         logout_user()
-        flash('Logged out.', 'success')
+        flash('Logged out.', 'success') # Flash message
+    # Redirect to the home page
     return redirect(url_for('home'))
 
-
+# Route for editing user profile
 @myapp_obj.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    # Create an EditProfileForm instance
     form = EditProfileForm()
 
     # Initialize error messages
     username_error = None
     email_error = None
 
+    # Check if the form is submitted and valid
     if form.validate_on_submit():
         # Check if the username and email is already taken
         if form.exist_username(form.username) and form.username.data != current_user.username:
             username_error = 'Username already taken'
         if form.exist_email(form.email) and form.email.data != current_user.email:
             email_error = 'Email already taken.'
-        # If either the username or email is taken, display an error message
+        # If either the username or email is taken, display the error message
         if username_error or email_error:
-            return render_template('edit_profile.html', form=form, username_error=username_error,
-                                   email_error=email_error)
-        # Updates the current user information
+            return render_template('edit_profile.html', form=form, username_error=username_error, email_error=email_error)
+        # Updates the current user information and redirects to home page
         current_user.update_info(form.name.data, form.username.data, form.email.data)
         flash('Changes Saved!.', 'success')
         return redirect(url_for('home'))
@@ -120,6 +136,7 @@ def edit_profile():
     form.email.data = current_user.email
     form.created_at.data = current_user.created_at.strftime("%m-%d-%Y")  # Convert datetime to string for display
 
+    # Render the edit profile template with the form
     return render_template('edit_profile.html', form=form)
 
 
