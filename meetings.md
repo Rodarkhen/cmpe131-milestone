@@ -51,3 +51,12 @@
   - Debrief on next meetings goals 
 - *Summary*: We resolve issues with our current project, making it presentable for milestone 2 submission. We also discussed that requirements / features 
   need to be implemented before final submission of project.
+
+### 2023-11-29 at 7:30 PM
+- *Attendees*: Anik, Rodrigo
+- *Updates*:
+  - Rodrigo finished adding the buttons for each page
+  - Anik solved the runoff problem when displaying the notes
+  - Revise all the requirements we implemented and also talked about the remaining requirements
+  - Review and make preparations to complete the Milestone 3
+- *Summary*: We fixed some issues that were occuring in the web app and spent time debugging it together. In addition to that, we also discussed what we should prepare for the next meeting.

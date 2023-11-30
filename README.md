@@ -6,6 +6,7 @@
 - [Collaborators](#Collaborators)
 - [Usage](#usage)
 - [Requirements](#Requirements)
+- [External Sources](#external-sources)
 
 ## Collaborators
 - Anik Budhathoki (@AnikBudhathoki)
@@ -66,3 +67,9 @@ This section provides a list of project requirements and responsibilities assign
 Those requiments with an [x] mark after the collaborator's name is the one that has been implemented.
 
 For more details on these requirements, click [requirements.md](requirements.md)
+
+## External Sources
+For this web application, we used some external sources for our logo, icon buttons, and some template
+- Logo was taken from [here](https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiA35urBhDCARIsAOU7QwlFNSJU7_sjtb73PVkvwwo8pUAG-jzpAQ6bVCv703u66hnrqNKCQa0aAn4PEALw_wcB)
+- Icon buttons was taken from [here](https://www.flaticon.com/free-icons/delete)
+- For the template of our page, we used bootstrap.
