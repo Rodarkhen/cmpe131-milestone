@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateT
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from datetime import datetime
 from app.models import User
+from flask_login import current_user
 
 class SignUpForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()], render_kw={"placeholder": "Enter your name"})
@@ -28,6 +29,7 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
+
 class EditProfileForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
@@ -38,10 +40,10 @@ class EditProfileForm(FlaskForm):
     def exist_username(self, field):
         if User.query.filter_by(username=field.data).first():
             return True
-        
+
     def exist_email(self, field):
         if User.query.filter_by(username=field.data).first():
-            return True   
+            return True
 
 class SearchForm(FlaskForm):
     search_query = StringField('Search Notes', validators=[DataRequired()], render_kw={"placeholder": "Enter Search"})

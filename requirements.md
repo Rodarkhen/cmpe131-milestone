@@ -14,7 +14,7 @@
 13. *Visualize note connections (Users should be able to visualize how their notes are related to each other)
 
 ## Non-functional Requirements
-1. *Multilingual Support (Support contents in multiple languages)
+
 2. Hashed Password (The system will store hashed passowords in the database for user security)
 
 ## Use Cases

@@ -14,7 +14,7 @@ class User(db.Model):
 
     # Establish the one-to-many relationship with notes
     notes = db.relationship('Note', backref='user', lazy='dynamic')
-                            
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
@@ -23,18 +23,18 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<user {self.id}: {self.username}>'
-    
+
     def is_active(self):
         return True
 
     def get_id(self):
         return str(self.id)
-    
+
     def is_authenticated(self):
-        return True 
+        return True
     def is_anonymous(self):
         return False
-    
+
     # For editing profile
     def update_info(self, name, username, email):
         self.name = name
