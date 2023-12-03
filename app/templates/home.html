@@ -10,7 +10,7 @@
       {% for note in user_notes %}
         <div class="note-block">
           <a href="{{ url_for('edit_note', note_id=note.id) }}">
-            <strong>{{ note.title }}</strong> - {{ note.content[:35] }}
+            <strong>{{ note.title }}</strong> - {{ note.content[:50] }}
           </a>
           <div class="delete-icons">
             <a href="{{ url_for('edit_note', note_id=note.id) }}">

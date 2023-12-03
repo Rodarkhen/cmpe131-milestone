@@ -17,7 +17,6 @@
       <div class="form-group">
         <label for="{{ form.content.id }}">{{ form.content.label }}</label>
         {{ form.content(class="form-control scrollable-content", id=form.content.id) }}
-        <!-- Adjust the height in the create_note.css file for the desired scrollable height -->
         {% if form.content.errors %}
           <small class="text-danger">{{ form.content.errors[0] }}</small>
         {% endif %}
