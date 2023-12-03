@@ -27,6 +27,9 @@
         <button type="button" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#deleteConfirmationModal">
           Delete Note
         </button>
+        
+        <!-- Add Convert to PDF button -->
+        <a href="{{ url_for('note_to_pdf', note_id=note.id) }}" class="btn btn-success btn-equal-width">Convert to PDF</a>
       </div>
     </form>
   </div>
