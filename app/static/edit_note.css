@@ -10,6 +10,6 @@
 
 form .form-group textarea {
     resize: vertical;
-    min-height: 500px;
+    min-height: 300px;
     width: 100%;
 }
