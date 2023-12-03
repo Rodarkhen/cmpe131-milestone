@@ -6,6 +6,7 @@ from app import myapp_obj, db
 from .models import User, Note
 from .forms import SignUpForm, LoginForm, EditProfileForm, NoteForm, SearchForm
 from datetime import datetime
+from faker import Faker
 
 # Route for handling user login
 @myapp_obj.route('/', methods=['GET', 'POST'])
@@ -199,11 +200,9 @@ def delete_note(note_id):
         return redirect(url_for('home'))
 
     db.session.delete(note)
-    db.session.commit()  # ADD and COMMIT changes to database
-
+    db.session.commit()
     flash('Note deleted successfully.', 'success')
     return redirect(url_for('home'))
-
 
 # Route for searching notes
 @myapp_obj.route('/search_notes', methods=['GET', 'POST'])
@@ -222,3 +221,26 @@ def search_notes():
         return render_template('search_notes.html', form=form, user_notes=user_notes)
     # Render the search page with the form and no notes initially
     return render_template('search_notes.html', form=form, user_notes=None)
+
+# Route to create a random note
+@myapp_obj.route('/create_random_note')
+@login_required
+def create_random_note():
+    fake = Faker()
+    # Generate random English title and content
+    random_title = fake.sentence(nb_words=5)[:-1]
+    random_content = fake.paragraph()
+
+    # Create a new note with the random title and content
+    note = Note(
+        title=random_title,
+        content=random_content,
+        user_id=current_user.id,
+        created_at=datetime.utcnow()
+    )
+
+    db.session.add(note)
+    db.session.commit()
+
+    flash('Random Note created successfully.', 'success')
+    return redirect(url_for('home'))
