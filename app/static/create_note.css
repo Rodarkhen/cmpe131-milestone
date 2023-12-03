@@ -3,3 +3,17 @@
     height: 300px;
     overflow-y: auto;
 }
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container h2 {
+    margin-right: 20px;
+}
+
+.btn-primary {
+    margin-left: auto;
+}

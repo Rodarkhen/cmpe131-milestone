@@ -6,6 +6,7 @@
   <div class="container mt-5">
     <h2 class="text-success">Welcome, {{ name }}!</h2>
     <h3 class="note-heading text-success">Your Notes:</h3>
+    <!-- Display existing notes -->
     {% if user_notes %}
       {% for note in user_notes %}
         <div class="note-block">
