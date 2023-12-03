@@ -1,4 +1,9 @@
 /* create_note.css */
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
 .scrollable-content {
     height: 300px;
     overflow-y: auto;

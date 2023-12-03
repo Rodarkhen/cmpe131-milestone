@@ -37,7 +37,6 @@ with myapp_obj.app_context():
 # Import the routes module from the 'app' package. This has the different urls for application
 from app import routes
 
-
 @login_manager.user_loader
 def load_user(user_id):
     # Query the database to find a user by their ID.
