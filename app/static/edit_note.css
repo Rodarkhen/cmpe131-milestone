@@ -7,3 +7,9 @@
 .deleeet:hover {
     background-color: #f0f0f0;
 }
+
+form .form-group textarea {
+    resize: vertical;
+    min-height: 500px;
+    width: 100%;
+}

@@ -199,11 +199,9 @@ def delete_note(note_id):
         return redirect(url_for('home'))
 
     db.session.delete(note)
-    db.session.commit()  # ADD and COMMIT changes to database
-
+    db.session.commit()
     flash('Note deleted successfully.', 'success')
     return redirect(url_for('home'))
-
 
 # Route for searching notes
 @myapp_obj.route('/search_notes', methods=['GET', 'POST'])

@@ -54,10 +54,10 @@ class EditProfileForm(FlaskForm):
             return True
 
 class SearchForm(FlaskForm):
-    search_query = StringField('Search Notes', validators=[DataRequired()], render_kw={"placeholder": "Enter Search"})
+    search_query = StringField('', validators=[DataRequired()], render_kw={"placeholder": "Enter Search"})
     submit = SubmitField('Search')
 
 class NoteForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()], render_kw={"placeholder": "Enter Title"})
-    content = TextAreaField('Content', validators=[DataRequired()], render_kw={"placeholder": "Enter content"})
+    title = StringField('', validators=[DataRequired()], render_kw={"placeholder": "Enter Title"})
+    content = TextAreaField('', validators=[DataRequired()], render_kw={"placeholder": "Enter content"})
     submit = SubmitField('Save Note')
