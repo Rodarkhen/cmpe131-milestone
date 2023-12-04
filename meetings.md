@@ -59,4 +59,14 @@
   - Anik solved the runoff problem when displaying the notes
   - Revise all the requirements we implemented and also talked about the remaining requirements
   - Review and make preparations to complete the Milestone 3
-- *Summary*: We fixed some issues that were occuring in the web app and spent time debugging it together. In addition to that, we also discussed what we should prepare for the next meeting.
+- *Summary*: We fixed some issues that were occurring in the web app and spent time debugging it together. In addition to that, we also discussed what we should prepare for the next meeting.
+
+### 2023-12-03 at 8:00 PM
+- *Attendees*: Anik, Rodrigo
+- *Updates*:
+  - Rodrigo presented/demonstrated new changes (Share notes, random notes, etc)
+  - Anik presented new implementation of Google Translate
+  - We worked on implementing a textbox editor to various text-areas of project
+  - We debug new problems that arose with displaying new text edited entries
+  - We reviewed and assigned preparations to completing the entire project
+- *Summary*: We demonstrated to each other new implementations and debugged them. After we discussed future plans to finish up project.
