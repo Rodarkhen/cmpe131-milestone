@@ -1,6 +1,5 @@
 /* home.css */
 body {
-    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
 
@@ -45,8 +44,23 @@ body {
     background-color: #d6d6d6;
 }
 
+.note-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 100px);
+}
+
+.icons-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 5px;
+}
+
 .note-block img {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .delete-icons {

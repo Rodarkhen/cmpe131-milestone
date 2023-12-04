@@ -1,0 +1,55 @@
+<!-- shared_notes.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='shared_notes.css') }}">
+    <div class="container">
+        <h2 class="header2 text-success">Shared Notes</h2>
+        {% if shared_notes %}
+            {% for shared_note in shared_notes %}
+            <div class="note-block">
+                <a href="{{ url_for('view_shared_note', shared_note_id=shared_note.id) }}">
+                    <strong>{{ shared_note.note.title }}</strong> by <i>{{ shared_note.note.user.username }} </i>
+                    <div class="note-content">
+                        {{ shared_note.note.content }}
+                    </div>
+                </a>
+                <div class="icons-buttons">
+                    {% if shared_note.note.user_id == current_user.id or shared_note.shared_with_user_id == current_user.id %}
+                        <a href="{{ url_for('note_to_pdf', note_id=shared_note.note.id) }}">
+                            <img src="{{ url_for('static', filename='/pictures/pdf.png') }}" alt="PDF" height=16px>
+                        </a>
+                        <a href="#" data-toggle="modal" data-target="#unshareModal{{ shared_note.id }}">
+                            <img src="{{ url_for('static', filename='pictures/unshare.png') }}" alt="Unshare" height=16px>
+                        </a>
+                </div>
+                <!-- Unshare Confirmation Modal -->
+                    <div class="modal fade" id="unshareModal{{ shared_note.id }}" tabindex="-1" role="dialog" aria-labelledby="unshareModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="unshareModalLabel">Unshare Note</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to remove the shared note "{{ shared_note.note.title }}"?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <form method="post" action="{{ url_for('unshare_note', shared_note_id=shared_note.id) }}">
+                                        <button type="submit" class="btn btn-danger">Unshare</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted mt-4">No shared notes.</p>
+        {% endif %}
+    </div>
+{% endblock %}

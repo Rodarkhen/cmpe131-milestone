@@ -1,16 +1,15 @@
 # routes.py
 from markupsafe import escape
-from flask import render_template, redirect, flash, url_for, request, make_response
+from flask import render_template, redirect, flash, url_for, request, send_file
 from flask_login import login_user, current_user, logout_user, login_required
 from app import myapp_obj, db
-from .models import User, Note
+from .models import User, Note, SharedNote
 from .forms import SignUpForm, LoginForm, EditProfileForm, NoteForm, SearchForm
 from datetime import datetime
 from faker import Faker
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import simpleSplit
 from io import BytesIO
-from flask import send_file
 
 
 # Route for handling user login
@@ -50,8 +49,10 @@ def login():
 def home():
     # Retrieve all notes for the current user
     user_notes = current_user.notes.all()
+    # Retrieve all shared notes for the current user
+    shared_notes = SharedNote.query.filter_by(shared_with_user_id=current_user.id).all()
     # Render the home template with the user's name and notes
-    return render_template('home.html', name=current_user.name, user_notes=user_notes)
+    return render_template('home.html', name=current_user.name, user_notes=user_notes, shared_notes=shared_notes)
 
 
 # Route for handling user sign-up
@@ -134,7 +135,7 @@ def edit_profile():
         # Updates the current user information and redirects to home page
         current_user.update_info(form.name.data, form.username.data, form.email.data)
         flash('Changes Saved!.', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('edit_profile'))
 
     # Pre-fill the form with the current user information
     form.name.data = current_user.name
@@ -256,57 +257,125 @@ def create_random_note():
 def note_to_pdf(note_id):
     note = Note.query.get_or_404(note_id)
 
-    # Check if the current user is the owner of the note
-    if note.user_id != current_user.id:
+    # Check if the current user is the owner of the note or a shared user
+    if note.user_id == current_user.id or SharedNote.query.filter_by(note_id=note.id, shared_with_user_id=current_user.id).first():
+        # Create a BytesIO object to store the PDF
+        pdf_bytes = BytesIO()
+
+        # Use ReportLab to generate the PDF with a standard letter page size (8.5 x 11 inches)
+        pdf_canvas = canvas.Canvas(pdf_bytes, pagesize=(8.5 * 72, 11 * 72))
+        pdf_canvas.setFont("Helvetica", 12)  # Set default font style for content
+
+        # Set the maximum width for text to avoid running off the page
+        max_width = 7.5 * 72  # Adjust as needed
+
+        # Calculate the width of the title text
+        title_width = pdf_canvas.stringWidth(note.title, "Helvetica-Bold", 12)
+
+        # Calculate the x-position to center the title
+        x_position = (8.5 * 72 - title_width) / 2
+
+        # Draw the centered bold title on the PDF with increased spacing
+        y_position = 750  # Adjust as needed
+        pdf_canvas.setFont("Helvetica-Bold", 12)  # Set font to bold for the title
+        pdf_canvas.drawString(x_position, y_position, note.title)
+        y_position -= 20  # Increase spacing
+
+        # Set font back to regular for the content
+        pdf_canvas.setFont("Helvetica", 12)
+
+        # Add content to the PDF with word wrapping and increased spacing
+        content_lines = simpleSplit(note.content, "Helvetica", 12, max_width)
+        y_position -= 10  # Initial spacing before content
+
+        # Draw the wrapped lines of content to the PDF with increased spacing
+        for line in content_lines:
+            pdf_canvas.drawString(50, y_position, line)
+            y_position -= 15  # Increase spacing between content lines
+
+        pdf_canvas.showPage()
+        pdf_canvas.save()
+
+        # Reset the buffer position to the beginning
+        pdf_bytes.seek(0)
+
+        # Create a Flask response with the PDF
+        response = send_file(
+            pdf_bytes,
+            as_attachment=True,
+            download_name=f'{note.title}.pdf',  # Use note title as the filename
+            mimetype='application/pdf'
+        )
+
+        return response
+    else:
         flash('You do not have permission to convert this note to PDF.', 'error')
         return redirect(url_for('home'))
 
-    # Create a BytesIO object to store the PDF
-    pdf_bytes = BytesIO()
 
-    # Use ReportLab to generate the PDF with a standard letter page size (8.5 x 11 inches)
-    pdf_canvas = canvas.Canvas(pdf_bytes, pagesize=(8.5 * 72, 11 * 72))
-    pdf_canvas.setFont("Helvetica", 12)  # Set default font style for content
+@myapp_obj.route('/notes/<int:note_id>/share', methods=['POST'])
+@login_required
+def share_note(note_id):
+    user_to_share_with = User.query.filter_by(username=request.form.get('username')).first()
 
-    # Set the maximum width for text to avoid running off the page
-    max_width = 7.5 * 72  # Adjust as needed
+    if user_to_share_with:
+        note = Note.query.get(note_id)
 
-    # Calculate the width of the title text
-    title_width = pdf_canvas.stringWidth(note.title, "Helvetica-Bold", 12)
+        if note and note.user_id == current_user.id:
+            shared_note = SharedNote(note_id=note.id, shared_with_user_id=user_to_share_with.id)
+            db.session.add(shared_note)
+            db.session.commit()
+            flash('Note shared successfully!', 'success')
+        else:
+            flash('You do not have permission to share this note.', 'error')
+    else:
+        flash('User not found.', 'error')
 
-    # Calculate the x-position to center the title
-    x_position = (8.5 * 72 - title_width) / 2
+    return redirect(url_for('home'))
 
-    # Draw the centered bold title on the PDF with increased spacing
-    y_position = 750  # Adjust as needed
-    pdf_canvas.setFont("Helvetica-Bold", 12)  # Set font to bold for the title
-    pdf_canvas.drawString(x_position, y_position, note.title)
-    y_position -= 20  # Increase spacing
+@myapp_obj.route('/shared_notes')
+@login_required
+def shared_notes():
+    shared_notes = SharedNote.query.filter_by(shared_with_user_id=current_user.id).all()
+    return render_template('shared_notes.html', shared_notes=shared_notes)
 
-    # Set font back to regular for the content
-    pdf_canvas.setFont("Helvetica", 12)
+@myapp_obj.route('/shared_notes/<int:shared_note_id>')
+@login_required
+def view_shared_note(shared_note_id):
+    shared_note = SharedNote.query.get(shared_note_id)
 
-    # Add content to the PDF with word wrapping and increased spacing
-    content_lines = simpleSplit(note.content, "Helvetica", 12, max_width)
-    y_position -= 10  # Initial spacing before content
+    # Check if the shared note exists and if the current user has access
+    if shared_note and shared_note.shared_with_user_id == current_user.id:
+        return render_template('view_shared_note.html', shared_note=shared_note)
+    else:
+        flash('Note not found or you do not have permission to view it.', 'error')
+        return redirect(url_for('home'))
+    
+@myapp_obj.route('/unshare_note/<int:shared_note_id>', methods=['GET', 'POST'])
+@login_required
+def unshare_note(shared_note_id):
+    shared_note = SharedNote.query.get_or_404(shared_note_id)
 
-    # Draw the wrapped lines of content to the PDF with increased spacing
-    for line in content_lines:
-        pdf_canvas.drawString(50, y_position, line)
-        y_position -= 15  # Increase spacing between content lines
+    # Check if the current user is either the owner or the recipient of the shared note
+    if shared_note.note.user_id == current_user.id or shared_note.shared_with_user_id == current_user.id:
+        # Get the referrer URL before the form submission
+        referrer = request.referrer
 
-    pdf_canvas.showPage()
-    pdf_canvas.save()
+        # Check if the form is submitted
+        if request.method == 'POST':
+            # Remove the shared note from the database
+            db.session.delete(shared_note)
+            db.session.commit()
 
-    # Reset the buffer position to the beginning
-    pdf_bytes.seek(0)
+            flash('Note unshared successfully!', 'success')
 
-    # Create a Flask response with the PDF
-    response = send_file(
-        pdf_bytes,
-        as_attachment=True,
-        download_name=f'{note.title}.pdf',  # Use note title as the filename
-        mimetype='application/pdf'
-    )
+            # Redirect back to the referrer URL or the home page if referrer is None
+            return redirect(referrer or url_for('home'))
 
-    return response
+        # Render the confirmation template for unsharing
+        return render_template('unshare_note.html', shared_note=shared_note)
+
+    flash('You do not have permission to unshare this note.', 'error')
+
+    # Redirect back to the referrer URL or the home page if referrer is None
+    return redirect(referrer or url_for('home'))

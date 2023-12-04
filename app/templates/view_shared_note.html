@@ -1,0 +1,21 @@
+<!-- view_shared_note.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='view_shared_note.css') }}">
+  <div class="container mt-5">
+    <h2 class="text-success">View Shared Note</h2>
+    {% if shared_note %}
+      <div class="note-block">
+        <strong>{{ shared_note.note.title }}</strong>
+        <p> 
+          by <i>{{ shared_note.note.user.username }} </i>
+        </p>
+        <hr>
+        <p>{{ shared_note.note.content }}</p>
+      </div>
+    {% else %}
+      <p class="text-muted mt-4">Note not found.</p>
+    {% endif %}
+  </div>
+{% endblock %}
