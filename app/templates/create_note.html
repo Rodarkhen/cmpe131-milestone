@@ -25,4 +25,12 @@
       <a href="{{ url_for('home') }}" class="btn btn-secondary btn-equal-width">Cancel</a>
     </form>
   </div>
+
+  <script>
+    tinymce.init({
+      selector: '#{{ form.content.id }}',
+      menubar: false,
+      toolbar: 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'
+    });
+  </script>
 {% endblock %}
