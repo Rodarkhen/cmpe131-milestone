@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label for="{{ form.content.id }}">{{ form.content.label }}</label>
-        {{ form.content(class="form-control scrollable-content", id=form.content.id) }}
+        {{ form.content(class="form-control text-editor", id=form.content.id) }}
         {% if form.content.errors %}
           <small class="text-danger">{{ form.content.errors[0] }}</small>
         {% endif %}

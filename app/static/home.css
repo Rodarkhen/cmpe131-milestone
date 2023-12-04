@@ -41,6 +41,14 @@ body {
     transition: background-color 0.3s;
 }
 
+.note-content{
+    padding-right: 100px;
+    max-width: 86%;  /* Adjust as needed */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .note-block:hover {
     background-color: #d6d6d6;
 }
@@ -57,6 +65,7 @@ body {
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+
 }
 
 .note-block:hover .delete-icons {
