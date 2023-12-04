@@ -59,5 +59,5 @@ class SearchForm(FlaskForm):
 
 class NoteForm(FlaskForm):
     title = StringField('', validators=[DataRequired()], render_kw={"placeholder": "Enter Title"})
-    content = TextAreaField('', validators=[DataRequired()], render_kw={"placeholder": "Enter content"})
+    content = TextAreaField('', render_kw={"placeholder": "Enter content"})
     submit = SubmitField('Save Note')

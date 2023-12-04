@@ -71,3 +71,11 @@ body {
 .text-muted {
     color: #6c757d;
 }
+
+.note-content{
+    padding-right: 100px;
+    max-width: 86%;  /* Adjust as needed */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
