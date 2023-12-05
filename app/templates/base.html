@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="shortcut icon" href="/pictures/favicon.ico">
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/75rqbzvq7qurh2be1w9x95wyezxc0so61yvucihv74x6tw0j/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                exclude: ['.notranslate']
+            }, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -23,14 +27,24 @@
         </a>
         <ul class="navbar-nav">
             {% if current_user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item {% if request.endpoint == 'home' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
+                <li class="nav-item {% if request.endpoint == 'shared_notes' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('shared_notes') }}">Shared Notes</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if request.endpoint == 'create_note' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav mx-auto">
+            {% if current_user.is_authenticated %}
+                <li class="nav-item {% if request.endpoint == 'search_notes' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
+                </li>
+                <li class="nav-item {% if request.endpoint == 'search_notes_regex' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('search_notes_regex') }}">Advanced Search</a>
                 </li>
             {% endif %}
         </ul>
@@ -74,11 +88,19 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-      tinymce.init({
-        selector: '.text-editor',
-        menubar: false,
-        toolbar: 'bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent'
-      });
+        tinymce.init({
+            selector: '.text-editor',
+            apiKey: '75rqbzvq7qurh2be1w9x95wyezxc0so61yvucihv74x6tw0j',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'Rodrigo' },
+                { value: 'Email', title: 'rodrigochennz@gmail.com' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
     </script>
 
 </body>

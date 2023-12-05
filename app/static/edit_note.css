@@ -1,22 +1,23 @@
 /*edit_note.css*/
 .container {
-    width: 1150px;
+    width: 800px;
     margin: auto;
-    margin-right: 50px;
 }
 
-/* Delete Button on edit note page */
-.deleeet {
-    background-color: white;
-    transition: background-color 0.3s;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.deleeet:hover {
-    background-color: #f0f0f0;
+.icon-container {
+    display: flex;
+    gap: 20px;
 }
 
 form .form-group {
-    width: 68%;
+    width: 800px;
+    margin: auto;
 }
 
 form .form-group textarea {
@@ -24,6 +25,18 @@ form .form-group textarea {
     min-height: 300px;
 }
 
+.button-group {
+    margin-top: 10px;
+}
+
 .modal-body {
     text-align: center;
+}
+
+#shareModal .form-group {
+    max-width: 50%;
+}
+
+#shareModal .modal-body button {
+    margin-top: 10px;
 }

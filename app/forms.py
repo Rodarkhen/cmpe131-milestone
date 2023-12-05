@@ -53,10 +53,12 @@ class EditProfileForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             return True
 
+# Form for the user to search for a note
 class SearchForm(FlaskForm):
     search_query = StringField('', validators=[DataRequired()], render_kw={"placeholder": "Enter Search"})
     submit = SubmitField('Search')
 
+# Form for the user to create a note
 class NoteForm(FlaskForm):
     title = StringField('', validators=[DataRequired()], render_kw={"placeholder": "Enter Title"})
     content = TextAreaField('', render_kw={"placeholder": "Enter content"})
