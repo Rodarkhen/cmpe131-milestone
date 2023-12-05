@@ -1,6 +1,5 @@
 /* search_notes.css */
 body {
-    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
 
@@ -17,14 +16,6 @@ body {
 .container {
     max-width: 800px;
     margin: 50px auto;
-}
-
-.text-success {
-    color: #000000;
-}
-
-.note-heading {
-    margin-bottom: 20px;
 }
 
 .note-block {

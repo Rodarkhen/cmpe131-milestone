@@ -11,7 +11,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from io import BytesIO
 
-
 # Route for handling user login
 @myapp_obj.route('/', methods=['GET', 'POST'])
 @myapp_obj.route("/login", methods=['GET', 'POST'])
@@ -38,7 +37,6 @@ def login():
     # Render the login template with the login form
     return render_template('login.html', form=form)
 
-
 # Route for the home page
 @myapp_obj.route('/home')
 @login_required
@@ -49,7 +47,6 @@ def home():
     shared_notes = SharedNote.query.filter_by(shared_with_user_id=current_user.id).all()
     # Render the home template with the user's name and notes
     return render_template('home.html', name=current_user.name, user_notes=user_notes, shared_notes=shared_notes)
-
 
 # Route for handling user sign-up
 @myapp_obj.route("/sign_up", methods=['GET', 'POST'])
@@ -96,7 +93,6 @@ def sign_up():
     return render_template('sign_up.html', form=form, username_error=username_error, email_error=email_error,
                            password_error=password_error)
 
-
 # Route for user logout
 @myapp_obj.route('/logout')
 def logout():
@@ -142,7 +138,7 @@ def edit_profile():
     # Render the edit profile template with the form
     return render_template('edit_profile.html', form=form)
 
-
+# Route to Create a note
 @myapp_obj.route('/create_note', methods=['GET', 'POST'])
 @login_required
 def create_note():
@@ -163,7 +159,6 @@ def create_note():
         return redirect(url_for('home'))  # Redirect to home
 
     return render_template('create_note.html', form=form)
-
 
 # Route to edit an existing note, identified by its ID
 @myapp_obj.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
@@ -221,6 +216,9 @@ def delete_note(note_id):
 def search_notes():
     form = SearchForm()
 
+    # Initialize the count of found notes
+    found_notes_count = 0
+
     # Handle the search logic upon form submission/validation
     if form.validate_on_submit():
         search_query = form.search_query.data
@@ -234,10 +232,13 @@ def search_notes():
             SharedNote.shared_with_user_id == current_user.id
         ).all()
 
+        # Count the total number of found notes
+        found_notes_count = len(user_notes) + len(shared_notes)
+
         # Render the search results page with the form and notes
-        return render_template('search_notes.html', form=form, user_notes=user_notes, shared_notes=shared_notes)
+        return render_template('search_notes.html', form=form, user_notes=user_notes, shared_notes=shared_notes, found_notes_count=found_notes_count)
     # Render the search page with the form and no notes initially
-    return render_template('search_notes.html', form=form, user_notes=None, shared_notes=None)
+    return render_template('search_notes.html', form=form, user_notes=None, shared_notes=None, found_notes_count=found_notes_count)
 
 # Route to create a random note
 @myapp_obj.route('/create_random_note')
@@ -262,6 +263,7 @@ def create_random_note():
     flash('Random Note created successfully.', 'success')
     return redirect(url_for('home'))
 
+# Route to generate a pdf from a note
 @myapp_obj.route('/note_to_pdf/<int:note_id>', methods=['GET'])
 @login_required
 def note_to_pdf(note_id):
@@ -315,7 +317,8 @@ def note_to_pdf(note_id):
     else:
         flash('You do not have permission to convert this note to PDF.', 'error')
         return redirect(request.referrer or url_for('home'))
-    
+
+# Route to share a note to other users 
 @myapp_obj.route('/notes/<int:note_id>/share', methods=['POST'])
 @login_required
 def share_note(note_id):
@@ -357,12 +360,14 @@ def share_note(note_id):
     # Redirect to the current note instead of the home page
     return redirect(url_for('edit_note', note_id=note_id))
 
+# Route to view all shared notes by other users
 @myapp_obj.route('/shared_notes')
 @login_required
 def shared_notes():
     shared_notes = SharedNote.query.filter_by(shared_with_user_id=current_user.id).all()
     return render_template('shared_notes.html', shared_notes=shared_notes)
 
+# Route to view the specific shared notes
 @myapp_obj.route('/shared_notes/<int:shared_note_id>')
 @login_required
 def view_shared_note(shared_note_id):
@@ -375,6 +380,7 @@ def view_shared_note(shared_note_id):
         flash('Note not found or you do not have permission to view it.', 'error')
         return redirect(url_for('home'))
 
+# Route to unshare or unlink a shared notes
 @myapp_obj.route('/unshare_note/<int:shared_note_id>', methods=['GET', 'POST'])
 @login_required
 def unshare_note(shared_note_id):

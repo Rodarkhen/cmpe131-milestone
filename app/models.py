@@ -2,7 +2,6 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from flask_login import UserMixin
 
 # Define the User model for the database
 class User(db.Model):
@@ -51,7 +50,6 @@ class User(db.Model):
         self.username = username
         self.email = email
         db.session.commit()
-
 
 class Note(db.Model):
     # Give each note an ID. This is the primary key for database

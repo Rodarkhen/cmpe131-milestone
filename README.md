@@ -50,21 +50,21 @@ To reinitialize the database, run the following command: ``python3 initTable.py`
 After running this command, all the data stored previsouly will be deleted and a new database file will be created.
 
 ## Requirements
-This section provides a list of project requirements and responsibilities assigned to team members:
+This section provides a list of project requirements and responsibilities assigned and implemented to team members:
 1. Sign up by [Rodrigo](https://github.com/Rodarkhen) [x]
-2. Log in by [Rodrigo](https://github.com/NickZivkovic) [x]
+2. Log in by [Rodrigo](https://github.com/Rodarkhen) [x]
 3. Create Notes by [Anik](https://github.com/AnikBudhathoki) [x]
 4. Attach Files/images by [Anik](https://github.com/AnikBudhathoki)
 5. Search Notes by [Anik](https://github.com/AnikBudhathoki) [x]
 6. Delete Notes by [Anik](https://github.com/AnikBudhathoki) [x]
-7. Edit Notes by [Anik](https://github.com/NickZivkovic) [x]
-8. Connect with any external API by [Nikola](https://github.com/NickZivkovic)
-9. Log Out by [Rodrigo](https://github.com/NickZivkovic) [x]
-10. Share Notes by [Rodrigo](https://github.com/Rodarkhen)
+7. Edit Notes by [Anik](https://github.com/AnikBudhathoki) [x]
+8. Connect with any external API (Rich Text Editor) by [Anik](https://github.com/AnikBudhathoki) [x]
+9. Log Out by [Rodrigo](https://github.com/Rodarkhen) [x]
+10. Share Notes by [Rodrigo](https://github.com/Rodarkhen) [x]
 11. Edit User Profiles by [Rodrigo](https://github.com/Rodarkhen) [x]
 12. Advance search items with regular expressions by [Rodrigo](https://github.com/Rodarkhen)
 
-Those requiments with an [x] mark after the collaborator's name is the one that has been implemented.
+The requiments with an [x] mark after the collaborator's name is the one that has been implemented.
 
 For more details on these requirements, click [requirements.md](requirements.md)
 

@@ -10,7 +10,11 @@
     <script src="https://cdn.tiny.cloud/1/75rqbzvq7qurh2be1w9x95wyezxc0so61yvucihv74x6tw0j/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                exclude: ['.notranslate']
+            }, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -27,19 +31,19 @@
                     <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('shared_notes') }}">Shared Notes</a>
+                </li>
+                <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('shared_notes') }}">Shared Notes</a>
+                    <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
                 </li>
             {% endif %}
         </ul>
         <div class="ml-auto">
             <ul class="navbar-nav">
                 {% if current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('edit_profile') }}">Edit Profile</a>
                     </li>
