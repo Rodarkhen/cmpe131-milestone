@@ -50,7 +50,7 @@ To reinitialize the database, run the following command: ``python3 initTable.py`
 After running this command, all the data stored previsouly will be deleted and a new database file will be created.
 
 ## Requirements
-This section provides a list of project requirements and responsibilities assigned and implemented to team members:
+This section provides a list of project requirements and responsibilities assigned and implemented by team members:
 1. Sign up by [Rodrigo](https://github.com/Rodarkhen) [x]
 2. Log in by [Rodrigo](https://github.com/Rodarkhen) [x]
 3. Create Notes by [Anik](https://github.com/AnikBudhathoki) [x]
@@ -62,7 +62,7 @@ This section provides a list of project requirements and responsibilities assign
 9. Log Out by [Rodrigo](https://github.com/Rodarkhen) [x]
 10. Share Notes by [Rodrigo](https://github.com/Rodarkhen) [x]
 11. Edit User Profiles by [Rodrigo](https://github.com/Rodarkhen) [x]
-12. Advance search items with regular expressions by [Rodrigo](https://github.com/Rodarkhen)
+12. Advance search items with regular expressions by [Rodrigo](https://github.com/Rodarkhen) [x]
 
 The requiments with an [x] mark after the collaborator's name is the one that has been implemented.
 
