@@ -10,6 +10,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from io import BytesIO
+import re
 
 # Route for handling user login
 @myapp_obj.route('/', methods=['GET', 'POST'])
@@ -239,6 +240,39 @@ def search_notes():
         return render_template('search_notes.html', form=form, user_notes=user_notes, shared_notes=shared_notes, found_notes_count=found_notes_count)
     # Render the search page with the form and no notes initially
     return render_template('search_notes.html', form=form, user_notes=None, shared_notes=None, found_notes_count=found_notes_count)
+
+# Route for searching notes with regular expression for both title and content
+@myapp_obj.route('/search_notes_regex', methods=['GET', 'POST'])
+@login_required
+def search_notes_regex():
+    form = SearchForm()
+
+    # Initialize the count of found notes
+    found_notes_count = 0
+
+    # Handle the search logic upon form submission/validation
+    if form.validate_on_submit():
+        search_query = form.search_query.data
+
+        # Perform the search based on regular expression criteria for both title and content
+        user_notes = current_user.notes.filter(
+            (Note.title.op('REGEXP')(search_query)) | (Note.content.op('REGEXP')(search_query))
+        ).all()
+
+        # Retrieve shared notes for the current user based on the search query
+        shared_notes = SharedNote.query.join(Note).filter(
+            (Note.title.op('REGEXP')(search_query)) | (Note.content.op('REGEXP')(search_query)),
+            SharedNote.shared_with_user_id == current_user.id
+        ).all()
+
+        # Count the total number of found notes
+        found_notes_count = len(user_notes) + len(shared_notes)
+
+        # Render the search results page with the form and notes
+        return render_template('search_notes_regex.html', form=form, user_notes=user_notes, shared_notes=shared_notes, found_notes_count=found_notes_count)
+
+    # Render the search page with the form and no notes initially
+    return render_template('search_notes_regex.html', form=form, user_notes=None, shared_notes=None, found_notes_count=found_notes_count)
 
 # Route to create a random note
 @myapp_obj.route('/create_random_note')

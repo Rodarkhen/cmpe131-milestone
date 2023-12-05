@@ -1,11 +1,11 @@
-<!-- search_notes.html -->
+<!-- search_notes_regex.html -->
 {% extends 'base.html' %}
 
 {% block content %}
   <link rel="stylesheet" href="{{ url_for('static', filename='search_notes.css') }}">
   <div class="container mt-5">
-    <h2>Search Notes</h2>
-    <form method="POST" action="{{ url_for('search_notes') }}" class="mt-4">
+    <h2>Search Notes with Regular Expression</h2>
+    <form method="POST" action="{{ url_for('search_notes_regex') }}" class="mt-4">
       {{ form.hidden_tag() }}
       <div class="form-group">
         <label for="{{ form.search_query.id }}">{{ form.search_query.label }}</label>
@@ -15,19 +15,19 @@
         {% endif %}
       </div>
       <button type="submit" class="btn btn-primary">Search</button>
-      <a href="{{ url_for('search_notes') }}" class="btn btn-secondary btn-equal-width">Clear</a>
+      <a href="{{ url_for('search_notes_regex') }}" class="btn btn-secondary btn-equal-width">Clear</a>
     </form>
 
     {% if user_notes or shared_notes %}
-      <h3 class="mt-4">Search Results: ({{found_notes_count}} Found)</h3>
+      <h3 class="mt-4">Search Results: ({{ found_notes_count }} Found)</h3>
       <ul class="list-group">
         {% if user_notes %}
           <h4>Your Notes:</h4>
           {% for note in user_notes %}
             <div class="note-block">
-              <div class ="note-content">
+              <div class="note-content">
                 <a href="{{ url_for('edit_note', note_id=note.id) }}">
-                  <strong>{{ note.title }}</strong> <p> {{ note.content| safe}}</p>
+                  <strong>{{ note.title }}</strong> <p>{{ note.content | safe }}</p>
                 </a>
               </div>
               <div class="delete-icons">
@@ -62,54 +62,53 @@
                 </div>
               </div>
             </div>
-            
           {% endfor %}
         {% endif %}
         {% if shared_notes %}
           <h4>Shared Notes:</h4>
           {% for shared_note in shared_notes %}
             <div class="note-block">
-              <div class ="note-content">
+              <div class="note-content">
                 <a href="{{ url_for('view_shared_note', shared_note_id=shared_note.id) }}">
                   <strong>{{ shared_note.note.title }}</strong> by <i>{{ shared_note.note.user.username }} </i>
-                  <p> 
-                    {{ shared_note.note.content| safe}}
+                  <p>
+                    {{ shared_note.note.content | safe }}
                   </p>
                 </a>
               </div>
               <div class="delete-icons">
                 <a href="{{ url_for('note_to_pdf', note_id=shared_note.note.id) }}">
-                    <img src="{{ url_for('static', filename='/pictures/pdf.png') }}" alt="PDF" height=16px>
+                  <img src="{{ url_for('static', filename='/pictures/pdf.png') }}" alt="PDF" height=16px>
                 </a>
                 <a href="#" data-toggle="modal" data-target="#unshareModal{{ shared_note.id }}">
-                    <img src="{{ url_for('static', filename='pictures/unshare.png') }}" alt="Unshare" height=16px>
+                  <img src="{{ url_for('static', filename='pictures/unshare.png') }}" alt="Unshare" height=16px>
                 </a>
-            </div>
+              </div>
             </div>
 
-                  <!-- Unshare Confirmation Modal -->
+            <!-- Unshare Confirmation Modal -->
             <div class="modal fade" id="unshareModal{{ shared_note.id }}" tabindex="-1" role="dialog" aria-labelledby="unshareModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="unshareModalLabel">Unshare Note</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                          <p>Are you sure you want to remove the shared note "{{ shared_note.note.title }}"?</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <form method="post" action="{{ url_for('unshare_note', shared_note_id=shared_note.id) }}">
-                            <button type="submit" class="btn btn-danger">Unshare</button>
-                        </form>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="unshareModalLabel">Unshare Note</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to remove the shared note "{{ shared_note.note.title }}"?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <form method="post" action="{{ url_for('unshare_note', shared_note_id=shared_note.id) }}">
+                              <button type="submit" class="btn btn-danger">Unshare</button>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
           {% endfor %}
         {% endif %}
       </ul>
