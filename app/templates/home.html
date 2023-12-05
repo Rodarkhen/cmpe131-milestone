@@ -5,17 +5,26 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
   <div class="container mt-5">
     <h2 class="text-success">Welcome, {{ name }}!</h2>
-    <h3 class="note-heading text-success">Your Notes:</h3>
+    <div class="header-container">
+      <h3 class="note-heading text-success">Your Notes:</h3>
+      <div>
+        <a href="{{ url_for('create_note') }}">
+          <img src="{{ url_for('static', filename='/pictures/create.png') }}" alt="Create Note" height=25px>
+        </a>
+      </div>
+    </div>
     <!-- Display existing notes -->
     {% if user_notes %}
       {% for note in user_notes %}
         <div class="note-block">
           <div class = "note-content">
-        <a href="{{ url_for('edit_note', note_id=note.id) }}">
-          <strong>{{ note.title }}</strong> <p> {{ note.content|safe }} </p>
-        </a>
+            <a href="{{ url_for('edit_note', note_id=note.id) }}">
+              <strong>{{ note.title }}</strong> 
+              <p>
+                {{ note.content|safe }}
+              </p>
+            </a>
           </div>
-
           <div class="delete-icons">
             <a href="{{ url_for('note_to_pdf', note_id=note.id) }}">
               <img src="{{ url_for('static', filename='/pictures/pdf.png') }}" alt="PDF" height=16px>
@@ -52,6 +61,56 @@
       {% endfor %}
     {% else %}
       <p class="text-muted mt-4">Nothing here yet.</p>
+    {% endif %}
+    <hr> <!-- Add a horizontal line to separate user notes and shared notes -->
+
+    <h3 class="note-heading text-success">Shared Notes:</h3>
+    <!-- Display shared notes -->
+    {% if shared_notes %}
+      {% for shared_note in shared_notes %}
+        <div class="note-block">
+          <div class = "note-content">
+            <a href="{{ url_for('view_shared_note', shared_note_id=shared_note.id) }}">
+              <strong>{{ shared_note.note.title }}</strong>  by <i>{{ shared_note.note.user.username }} </i>
+                <p>
+                  {{ shared_note.note.content|safe}}
+                <p>
+            </a>
+          </div>
+          <div class="icons-buttons">
+              <a href="{{ url_for('note_to_pdf', note_id=shared_note.note.id) }}">
+                  <img src="{{ url_for('static', filename='/pictures/pdf.png') }}" alt="PDF" height=16px>
+              </a>
+              <a href="#" data-toggle="modal" data-target="#unshareModal{{ shared_note.id }}">
+                  <img src="{{ url_for('static', filename='pictures/unshare.png') }}" alt="Unshare" height=16px>
+              </a>
+          </div>
+        </div>
+        <!-- Unshare Confirmation Modal -->
+        <div class="modal fade" id="unshareModal{{ shared_note.id }}" tabindex="-1" role="dialog" aria-labelledby="unshareModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="unshareModalLabel">Unshare Note</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to remove the shared note "{{ shared_note.note.title }}"?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form method="post" action="{{ url_for('unshare_note', shared_note_id=shared_note.id) }}">
+                            <button type="submit" class="btn btn-danger">Unshare</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted mt-4">No shared notes.</p>
     {% endif %}
   </div>
 {% endblock %}

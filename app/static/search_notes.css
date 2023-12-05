@@ -1,4 +1,4 @@
-/* home.css */
+/* search_notes.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -72,9 +72,10 @@ body {
     color: #6c757d;
 }
 
-.note-content{
+.note-content {
     padding-right: 100px;
-    max-width: 86%;  /* Adjust as needed */
+    max-width: 86%;
+    /* Adjust as needed */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

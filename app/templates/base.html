@@ -30,13 +30,16 @@
                         <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
+                    <a class="nav-link" href="{{ url_for('shared_notes') }}">Shared Notes</a>
                 </li>
             {% endif %}
         </ul>
         <div class="ml-auto">
             <ul class="navbar-nav">
                 {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('edit_profile') }}">Edit Profile</a>
                     </li>

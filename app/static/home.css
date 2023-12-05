@@ -14,6 +14,12 @@ body {
     z-index: 1000;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -41,9 +47,9 @@ body {
     transition: background-color 0.3s;
 }
 
-.note-content{
+.note-content {
     padding-right: 100px;
-    max-width: 86%;  /* Adjust as needed */
+    max-width: 86%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

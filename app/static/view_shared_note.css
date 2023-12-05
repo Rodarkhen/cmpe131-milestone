@@ -1,0 +1,101 @@
+/* view_shared_note.css */
+body {
+    background-color: #f8f9fa;
+}
+
+.header2 {
+    padding: 15px;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.text-success {
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-block {
+    position: relative;
+    padding: 15px;
+    background-color: #eee;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000000;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: background-color 0.5s;
+}
+
+.note-block:hover {
+    background-color: #d6d6d6;
+}
+
+.note-block img {
+    margin-left: 10px;
+}
+
+.note-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 100px);
+}
+
+.icons-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+.note-block:hover .delete-icons {
+    display: flex;
+}
+
+.note-block a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.view-shared-note-container {
+    margin-top: 50px;
+    /* Adjust margin as needed */
+}
+
+.view-shared-note-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.view-shared-note-author {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.view-shared-note-content {
+    margin-top: 10px;
+}

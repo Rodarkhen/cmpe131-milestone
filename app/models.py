@@ -60,11 +60,17 @@ class Note(db.Model):
     title = db.Column(db.String(100), nullable=False)
     # Body of the note, stored as text (NO charecter limit)
     content = db.Column(db.Text, nullable=False)
-    # User ID that establishes relationship with user ID from other User database
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     # Column to store date at which note created
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    # User ID that establishes relationship with user ID from other User database
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f'<Note {self.id}: {self.title}>'
+
+class SharedNote(db.Model):
+    # Columns that will be on the database for SharedNote model
+    id = db.Column(db.Integer, primary_key=True)
+    note_id = db.Column(db.Integer, db.ForeignKey('note.id'), nullable=False)
+    shared_with_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    note = db.relationship('Note', backref=db.backref('shared_notes', lazy=True))
