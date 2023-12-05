@@ -74,9 +74,11 @@ body {
 
 .note-content {
     padding-right: 100px;
-    max-width: 86%;
-    /* Adjust as needed */
+    max-height: 4em;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
