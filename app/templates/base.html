@@ -27,19 +27,23 @@
         </a>
         <ul class="navbar-nav">
             {% if current_user.is_authenticated %}
-                <li class="nav-item">
+                <li class="nav-item {% if request.endpoint == 'home' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if request.endpoint == 'shared_notes' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('shared_notes') }}">Shared Notes</a>
                 </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
+                <li class="nav-item {% if request.endpoint == 'create_note' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('create_note') }}">Create Note</a>
                 </li>
-                <li class="nav-item">
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav mx-auto">
+            {% if current_user.is_authenticated %}
+                <li class="nav-item {% if request.endpoint == 'search_notes' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('search_notes') }}">Search Notes</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% if request.endpoint == 'search_notes_regex' %}active{% endif %}">
                     <a class="nav-link" href="{{ url_for('search_notes_regex') }}">Advanced Search</a>
                 </li>
             {% endif %}
