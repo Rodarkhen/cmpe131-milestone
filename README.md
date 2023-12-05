@@ -64,9 +64,13 @@ This section provides a list of project requirements and responsibilities assign
 11. Edit User Profiles by [Rodrigo](https://github.com/Rodarkhen) [x]
 12. Advance search items with regular expressions by [Rodrigo](https://github.com/Rodarkhen) [x]
 
+On the way of implementing the requirements, we additionally had more ideas to implement into our web app:
+1. PDF Conversion by [Rodrigo](https://github.com/Rodarkhen) [x]
+2. Create Random Notes by [Rodrigo](https://github.com/Rodarkhen) [x]
+
 The requiments with an [x] mark after the collaborator's name is the one that has been implemented.
 
-For more details on these requirements, click [requirements.md](requirements.md)
+For more details on the initial requirements, click [requirements.md](requirements.md)
 
 ## External Sources
 For this web application, we used some external sources for our logo, icon buttons, and some template
