@@ -7,7 +7,7 @@
 - [Usage](#usage)
 - [Requirements](#Requirements)
 - [External Sources](#external-sources)
-
+- [Project Demo](#project-demo)
 ## Collaborators
 - Anik Budhathoki (@AnikBudhathoki)
 - Nikola Zivkovic (@NickZivkovic)
@@ -77,3 +77,7 @@ For this web application, we used some external sources for our logo, icon butto
 - Logo was taken from [here](https://looka.com/logo-maker/?gad_source=1&gclid=Cj0KCQiA35urBhDCARIsAOU7QwlFNSJU7_sjtb73PVkvwwo8pUAG-jzpAQ6bVCv703u66hnrqNKCQa0aAn4PEALw_wcB)
 - Icon buttons was taken from [here](https://www.flaticon.com/free-icons/delete)
 - For the template of our page, we used bootstrap.
+
+## Project Demo
+This is a video demo for our final project. It was recorded by Anik. Click the following link: 
+[ProjectDemo](https://drive.google.com/file/d/1e0WO8gpEv3SgJgVrr2CWbjYtWX3FcZ-K/view?usp=sharing)
