@@ -1,25 +1,25 @@
-{% extends 'base.html' %}
-
-{% block title %} Logging out of NOTEY - {{ super() }}{% endblock %}
-
-{% block content %}
-    <!-- Your additional content goes here -->
-
-    <div id="logout-confirmation">
-        <h2>Are you sure you want to log out?</h2>
-
-
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yes and No Buttons</title>
+    <title>Logout Example</title>
 </head>
 <body>
-    <button>Yes</button>
-    <button>No</button>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+    function logout() {
+        var confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+            // Perform logout actions here
+            // For now, let's just alert a message
+            alert("Logged out successfully");
+            // You can add more actions like redirecting to a login page or making an API call
+        }
+    }
+</script>
+
 </body>
 </html>
-
-{% endblock %}

@@ -24,5 +24,7 @@ def login_page():
 def logout_feature():
     return render_template('/logout_feature.html')
 
-
+@myapp_obj.route('/API.html')
+def API():
+    return render_template('/API.html')
 
